@@ -23,7 +23,7 @@
 			$email = $_REQUEST['email'];
 			$senha = $_REQUEST['senha'];
 
- 			$sql = "SELECT * FROM USUARIO WHERE EMAIL = '$email' AND SENHA = '$senha' ";
+ 			$sql = "SELECT * FROM USUARIO WHERE EMAIL = '$email' AND SENHA = '$senha' AND EXCLUIDO <> 1 ";
 			
  			$query = mysqli_query($conexao, $sql);
 

@@ -7,11 +7,11 @@
 	* @access public  
 	* @package php/controller 
     */
-    include_once("../model/loginModel.php");
+    include_once("../model/LoginModel.php");
 
     $operacao = $_REQUEST['operacao'];
 
-    $loginModel = new loginModel();
+    $loginModel = new LoginModel();
 
     switch ($operacao) {
         case 'logar':
@@ -32,14 +32,17 @@
         $retorno['status'] = false;
 
         $resultado = $loginModel->verificarUsuario();
-
+        
         if (empty($resultado)) {
             $retorno['erro'] = 'Usuario nao encontrado';
             echo json_encode($retorno);    
         } else {
             $sessao = $loginModel->criarSessao($resultado);
             if ($sessao != false) {
-                //... fazer o update do usuário passando a sessão.
+                $retorno['status'] = true;
+                $resultado['sessao'] = $sessao;
+                $retorno['dados'] = $resultado;
+                echo json_encode($retorno);    
             } else {
                 $retorno['erro'] = 'Erro ao criar sessao';
                 echo json_encode($retorno);    

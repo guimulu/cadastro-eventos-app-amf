@@ -15,7 +15,7 @@ function logar(){
     $.ajax({
         url: 'php/controller/loginController.php',
         data: dados,
-        //dataType: 'json',
+        dataType: 'json',
         async: false
     }).done(function(resultado) {
         console.log(resultado);
