@@ -7,7 +7,7 @@
 	* @access public  
 	* @package php/model
 	*/
-	 class loginModel {
+	 class LoginModel {
 
 		/** 
     	* Função para verificar se o usuário informado existe
