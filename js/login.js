@@ -13,15 +13,12 @@ function logar(){
     dados.email = $('#email').val();
     dados.operacao = 'logar';  
     $.ajax({
-        url: '../bd/login.php',
+        url: 'php/controller/loginController.php',
         data: dados,
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-    	if (resultado){
-           // TODO: Insert na Sessão e buscar o id que retornar.
-           // ID_SESSAO vai validar todas as operações realizadas no sistema.
- 		}
+        console.log(resultado);
     });
 
 }
