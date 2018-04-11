@@ -1,0 +1,41 @@
+.navbar-login {
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-login-session {
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.icon-size {
+    font-size: 87px;
+}
+
+.navbar-default { 
+    background-color: #0181b4;
+}
+
+.navbar-default .navbar-nav>li>a {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #FFFFFF;
+    font-weight: 800;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #0F0F0F;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+.logo {
+    height: 60px;
+    margin-top: -20px;
+}

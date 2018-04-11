@@ -3,7 +3,11 @@
 .login{
    font-family: 'Josefin Sans', sans-serif;
    background: #f4f4f4; 
-   padding:70px 0px;
+   padding:25px 0px;
+}
+
+.lbl-email, .lbl-senha{
+    font-weight: 800
 }
 
 h1{
@@ -16,7 +20,7 @@ h1{
     padding:25px 0px;
 }
 
-form{
+.form-login{
     padding:80px;
 }
 
