@@ -12,7 +12,7 @@
 		/** 
     	* Função para cadastrar o usuário
     	* @access public 
-    	* @param $email, $email, $senha, $sessao
+    	* @param $nome, $email, $senha, $sessao
 		* @return boolean
     	*/ 
 		public function cadastrarUsuario() {
@@ -24,7 +24,56 @@
 			$senha = $_REQUEST['senha'];
 			$sessao = $_REQUEST['sessao'];
 
-			$sql = "INSERT INTO USUARIO(NOME, SENHA, EMAIL, ID_SESSAO) VALUES('$nome', '$senha', '$email', '$sessao')";
+			$sql = "INSERT INTO USUARIO(NOME, SENHA, EMAIL, ID_SESSAO) VALUES('$nome', '$senha', '$email', $sessao)";
+			 
+			if($conexao->query($sql) === TRUE) {
+				return true;
+		  	}else{
+				return false;
+		  	}
+			
+		}
+
+		/** 
+    	* Função para alterar o usuário
+    	* @access public 
+    	* @param $usuario, $nome, $email, $senha, $sessao
+		* @return boolean
+    	*/ 
+		public function alterarUsuario() {
+			
+			require 'DefaultModel.php';
+
+			$usuario = $_REQUEST['usuario'];
+			$nome = $_REQUEST['nome'];
+			$email = $_REQUEST['email'];
+			$senha = $_REQUEST['senha'];
+			$sessao = $_REQUEST['sessao'];
+
+			$sql = "UPDATE USUARIO SET NOME = '$nome', SENHA = '$senha', EMAIL = '$email', ID_SESSAO = $sessao WHERE ID_USUARIO = $usuario";
+			 
+			if($conexao->query($sql) === TRUE) {
+				return true;
+		  	}else{
+				return false;
+		  	}
+			
+		}
+
+		/** 
+    	* Função para exclusão lógica do usuário
+    	* @access public 
+    	* @param $usuario, $sessao
+		* @return boolean
+    	*/ 
+		public function apagarUsuario() {
+			
+			require 'DefaultModel.php';
+
+			$usuario = $_REQUEST['usuario'];
+			$sessao = $_REQUEST['sessao'];
+
+			$sql = "UPDATE USUARIO SET ID_SESSAO = $sessao, EXCLUIDO = 1 WHERE ID_USUARIO = $usuario";
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;
