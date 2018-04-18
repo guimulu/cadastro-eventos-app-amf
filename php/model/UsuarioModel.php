@@ -7,7 +7,7 @@
 	* @access public  
 	* @package php/model
 	*/
-	 class LoginModel {
+	 class UsuarioModel {
 
 		/** 
     	* Função para cadastrar o usuário
@@ -32,6 +32,34 @@
 				return false;
 		  	}
 			
+		}
+
+		/** 
+    	* Função para buscar os usuarios
+    	* @access public 
+		* @return array
+		* @return null
+    	*/ 
+		public function buscarUsuarios() {
+			
+			require 'DefaultModel.php';
+			
+			$sql = "SELECT * FROM USUARIO";
+			 
+			$query = mysqli_query($conexao, $sql);
+
+ 			if (mysqli_num_rows($query) > 0 ) {
+				
+				while($dados = mysqli_fetch_assoc($query)){
+					$retorno[] = $dados; 
+				}    
+		
+				return $retorno;
+
+			} else {
+				return null;
+			}
+
 		}
 
 		/** 

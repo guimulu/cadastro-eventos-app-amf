@@ -23,10 +23,34 @@
         case 'alterarUsuario':
             alterarUsuario($usuarioModel);
             break;
+        case 'buscarUsuarios':
+            buscarUsuarios($usuarioModel);
+            break;
         default:
             echo "Nenhuma operação encontrada!";
             break;
-    }    
+    }
+    
+    /** 
+    * Função destinada para a busca dos cursos
+    * @access public 
+    * @param $usuarioModel 
+    * @return json 
+    */ 
+    function buscarUsuarios($cursoModel) {
+        $retorno['status'] = false;
+        
+        $resultado = $usuarioModel->buscarUsuarios();
+        
+        if(!empty($resultado)){
+           $retorno['status'] = true;
+           $retorno['dados'] = $resultado; 
+        }else{
+            $retorno['erro'] = 'Nenhum dado encontrado';
+        }
+
+        echo json_encode($retorno);
+    }
 
     /** 
     * Função destinada ao cadastro do usuário
