@@ -1,4 +1,4 @@
-host: mysql.dickow.me
+host: mysql762.umbler.com
 user: dickow01
 pass: 5o0Aitkw3Hkz
 database: dickow01
