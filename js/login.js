@@ -18,6 +18,7 @@ function logar(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
+        carregarHTML('paginaInicial.html');
         console.log(resultado);
     });
 

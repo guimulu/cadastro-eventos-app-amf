@@ -3,8 +3,11 @@
  * @author Guilherme Müller
  */
 $(function() {
-	carregarHTML('paginaInicial.html');
-	//carregarHTML('login.html');
+	//if (possuiSessao()) {
+	//} else {
+		//carregarHTML('login.html');
+	//}
+	carregarHTML('cadUsuario.html');
 });
 
 /**

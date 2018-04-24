@@ -1,66 +1,29 @@
 <div id="pg-inicial">
     <link href="css/paginaInicial.css" rel="stylesheet">
     <script type="text/javascript" src="js/paginaInicial.js"></script>
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container"> 
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span> 
-                    </button>
-                    <a target="_blank" href="#" class="navbar-brand"><img class="logo" src="https://www.faculdadeam.edu.br/Content/images/amf/icons/ic_amf.png"   ></a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">Usuário</a></li>
-                        <li><a href="#">Curso</a></li>
-                        <li><a href="#">Tipo de Evento</a></li>
-                        <li><a href="#">Evento</a></li>
-                        <!--li class="active"><a href="http://bootsnipp.com/snippets/featured/nav-account-manager" target="_blank">Exemplo</a></li-->             
-                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-user"></span> 
-                                <strong>Aqui vai o Nome do Usuário</strong>
-                                <span class="glyphicon glyphicon-chevron-down"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="navbar-login">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <p class="text-center">
-                                                    <span class="glyphicon glyphicon-user icon-size"></span>
-                                                </p>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <p class="text-left"><strong>Joao Souza</strong></p>
-                                                <p class="text-left small">emaildojoao@email.com</p>
-                                                <p class="text-left">
-                                                    <a href="#" class="btn btn-primary btn-block btn-sm">Minha conta</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="navbar-login navbar-login-session">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <p>
-                                                    <a href="#" class="btn btn-danger btn-block">Sair</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+    <div id="topo">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-ms-6 col-xs-6" id="logo-topo">
+                <a target="_self" href="/index.html" class="navbar-brand"><img class="logo" src="/img/logo-amf-170x170.png"></a>
             </div>
-        </div>
+            <div class="col-md-6 col-ms-6 col-xs-6" id="abre-menu-topo">
+             
+             <a href="#" class="btn-collapse">
+               <div class="lista-collapse"></div>
+               <div class="lista-collapse"></div>
+               <div class="lista-collapse"></div>
+             </a>
+            
+            </div>
+          </div><!--Fim da Row1 -->
+          <div class="row">
+            <ul id="menu-topo">
+              <li><a href="/">USUÁRIOS</a></li>
+              <li><a href="/">CURSO</a></li>
+              <li><a href="#contato" class="dentro">EVENTO</a></li>
+            </ul>
+          </div>
+        </div><!--Fim da coontainer -->
+      </div><!--Fim do topo -->
 </div>
