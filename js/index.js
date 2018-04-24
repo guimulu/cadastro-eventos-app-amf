@@ -5,9 +5,10 @@
 $(function() {
 	//if (possuiSessao()) {
 	//} else {
-		//carregarHTML('login.html');
+		carregarHTML('login.html');
 	//}
-	carregarHTML('cadUsuario.html');
+	//carregarHTML('cadUsuario.html');
+	//carregarHTML('paginaInicial.html');
 });
 
 /**
