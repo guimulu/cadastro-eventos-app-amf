@@ -12,18 +12,18 @@
 		/** 
     	* Função para cadastrar o tipo de evento
     	* @access public 
-    	* @param $nome, $email, $senha, $sessao
+    	* @param $nome, $cor, $sessao
 		* @return boolean
     	*/ 
-		public function cadastrarUsuario() {
+		public function cadastrarTipoEvento() {
 			
 			require 'DefaultModel.php';
 
 			$nome = $_REQUEST['nome'];
-			
+			$cor = $_REQUEST['cor'];
 			$sessao = $_REQUEST['sessao'];
 
-			$sql = "INSERT INTO USUARIO(NOME, SENHA, EMAIL, ID_SESSAO) VALUES('$nome', '$senha', '$email', $sessao)";
+			$sql = "INSERT INTO EVENTO_TIPO(NOME, COR, ID_SESSAO) VALUES('$nome', $cor, $sessao)";
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;
@@ -39,11 +39,11 @@
 		* @return array
 		* @return null
     	*/ 
-		public function buscarUsuarios() {
+		public function buscarTiposEventos() {
 			
 			require 'DefaultModel.php';
 			
-			$sql = "SELECT * FROM USUARIO";
+			$sql = "SELECT * FROM EVENTO_TIPO";
 			 
 			$query = mysqli_query($conexao, $sql);
 
@@ -64,20 +64,19 @@
 		/** 
     	* Função para alterar o tipo de evento
     	* @access public 
-    	* @param $usuario, $nome, $email, $senha, $sessao
+    	* @param $eventoTipo, $nome, $cor, $sessao
 		* @return boolean
     	*/ 
-		public function alterarUsuario() {
+		public function alterarTipoEvento() {
 			
 			require 'DefaultModel.php';
 
-			$usuario = $_REQUEST['usuario'];
+			$eventoTipo = $_REQUEST['eventoTipo'];
 			$nome = $_REQUEST['nome'];
-			$email = $_REQUEST['email'];
-			$senha = $_REQUEST['senha'];
+			$cor = $_REQUEST['cor'];
 			$sessao = $_REQUEST['sessao'];
 
-			$sql = "UPDATE USUARIO SET NOME = '$nome', SENHA = '$senha', EMAIL = '$email', ID_SESSAO = $sessao WHERE ID_USUARIO = $usuario";
+			$sql = "UPDATE EVENTO_TIPO SET NOME = '$nome', COR = $cor, ID_SESSAO = $sessao WHERE ID_EVENTO_TIPO = $eventoTipo";
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;
@@ -90,17 +89,17 @@
 		/** 
     	* Função para exclusão lógica do tipo de evento
     	* @access public 
-    	* @param $usuario, $sessao
+    	* @param $eventoTipo, $sessao
 		* @return boolean
     	*/ 
-		public function apagarUsuario() {
+		public function apagarTipoEvento() {
 			
 			require 'DefaultModel.php';
 
-			$usuario = $_REQUEST['usuario'];
+			$eventoTipo = $_REQUEST['eventoTipo'];
 			$sessao = $_REQUEST['sessao'];
 
-			$sql = "UPDATE USUARIO SET ID_SESSAO = $sessao, EXCLUIDO = 1 WHERE ID_USUARIO = $usuario";
+			$sql = "UPDATE EVENTO_TIPO SET ID_SESSAO = $sessao, EXCLUIDO = 1 WHERE ID_EVENTO_TIPO = $eventoTipo";
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;
