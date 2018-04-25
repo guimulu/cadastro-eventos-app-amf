@@ -20,8 +20,7 @@
 			require 'DefaultModel.php';
 
 			$nome = $_REQUEST['nome'];
-			$email = $_REQUEST['email'];
-			$senha = $_REQUEST['senha'];
+			
 			$sessao = $_REQUEST['sessao'];
 
 			$sql = "INSERT INTO USUARIO(NOME, SENHA, EMAIL, ID_SESSAO) VALUES('$nome', '$senha', '$email', $sessao)";
