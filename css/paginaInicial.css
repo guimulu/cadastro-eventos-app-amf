@@ -1,13 +1,14 @@
 #topo {
-    z-index: 15;
+    z-index: 1002;
     background-color: #FFF;
     width: 100%;
     position: fixed;
     border-bottom: 1px solid #16618D;
     opacity: 0.9;
+    top: 0;
 }
 #logo-topo img {
-    margin: -8px 0 4% 0;
+    margin: 5px 0 4% 0;
 }
 #menu-topo{
     border-top: 1px solid #1C79AD;
@@ -82,4 +83,31 @@
 
 .row {
     margin-bottom: 0;
+}
+#abre-menu-topo {
+    margin-top: 20px;
+    float: right;
+}
+
+#menu-topo > li > a {
+    cursor: pointer;
+}
+
+.titulo > span {
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 10px;
+    margin-left: calc(50% - 106px);
+    position: absolute;
+}
+
+.titulo {
+    background-color: #039be5;
+    height: 60px;
+}
+
+.titulo > a {
+    float: right;
+    right: 5%;
 }

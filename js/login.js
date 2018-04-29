@@ -2,6 +2,20 @@
  * Classe onde será feita as validações de login do usuário.
  * @author Guilherme Müller
  */
+window.document.onload = function(e) {
+    console.log('e', e);  
+}
+
+
+// $(function() {
+// 	if (possuiSessao()) {
+// 		carregarHTML('index.html')
+// 		//carregarHTML('cadUsuario.html');
+// 	} else {
+// 		carregarHTML('login.html');
+// 	}
+
+// });
 
 /** 
  * Método de login do usuário.
@@ -18,8 +32,12 @@ function logar(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        carregarHTML('paginaInicial.html');
         console.log(resultado);
+        if (resultado.status == true) {
+            $.session.set('session_login', resultado.dados.sessao);
+            carregarHTML('paginaInicial.html');
+            console.log('resultado.dados.sessao ', resultado.dados.sessao);
+        }
+        
     });
-
 }

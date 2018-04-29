@@ -37,7 +37,7 @@
     * @param $usuarioModel 
     * @return json 
     */ 
-    function buscarUsuarios($cursoModel) {
+    function buscarUsuarios($usuarioModel) {
         $retorno['status'] = false;
         
         $resultado = $usuarioModel->buscarUsuarios();

@@ -4,12 +4,12 @@
     <div id="topo">
         <div class="container">
           <div class="row">
-            <div class="col-md-6 col-ms-6 col-xs-6" id="logo-topo">
-                <a target="_self" href="/index.html" class="navbar-brand">
+            <div class="col md6 ms6 xs6" id="logo-topo">
+                <a target="_self" href="./index.html" class="navbar-brand">
                     <img class="logo" src=".//img/logo-amf-170x170.png">
                 </a>
             </div>
-            <div class="col-md-6 col-ms-6 col-xs-6" id="abre-menu-topo">
+            <div class="col md6 ms6 xs6" id="abre-menu-topo">
              
              <a href="#" class="btn-collapse">
                <div class="lista-collapse"></div>
@@ -21,11 +21,15 @@
           </div><!--Fim da Row1 -->
           <div class="row">
             <ul id="menu-topo">
-              <li><a href="/">USUÁRIOS</a></li>
-              <li><a href="/">CURSO</a></li>
-              <li><a href="#contato" class="dentro">EVENTO</a></li>
+              <li><a onclick="carregarHTMLPaginaInicial('cadUsuario.html'); fecharMenu();">USUÁRIOS</a></li>
+              <li><a href="./index.html">CURSO</a></li>
+              <li><a href="./index.html" class="dentro">EVENTO</a></li>
+              <li><a href="./index.html" onclick="encerrarSessao();">SAIR</a></li>
             </ul>
           </div>
         </div><!--Fim da coontainer -->
       </div><!--Fim do topo -->
+      <div id="content">
+
+      </div>
 </div>

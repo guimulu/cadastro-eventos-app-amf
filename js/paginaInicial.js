@@ -16,6 +16,12 @@ $(document).ready(function(e) {
             $(".lista-collapse:nth-child(3)").addClass('botao-lista-baixo');
         }
     });
-        
-
 });
+
+var fecharMenu = function() {
+        $('#menu-topo').toggle('');
+        menuaberto = false;
+        $(".lista-collapse:nth-child(1)").removeClass('botao-lista-cima');
+        $(".lista-collapse:nth-child(2)").removeClass('hidden');
+        $(".lista-collapse:nth-child(3)").removeClass('botao-lista-baixo');
+};
