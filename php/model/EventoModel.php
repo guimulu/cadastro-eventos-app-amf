@@ -10,6 +10,35 @@
 	 class EventoModel {
 
 		/** 
+    	* Função para buscar as recorrências
+    	* @access public 
+		* @return array
+		* @return null
+    	*/ 
+		public function buscarRecorrencias() {
+			
+			require 'DefaultModel.php';
+			
+			$sql = "SELECT * FROM RECORRENCIA";
+			 
+			$query = mysqli_query($conexao, $sql);
+
+ 			if (mysqli_num_rows($query) > 0 ) {
+				
+				while($dados = mysqli_fetch_assoc($query)){
+					$retorno[] = $dados; 
+				}    
+		
+				return $retorno;
+
+			} else {
+				return null;
+			}
+
+		}
+
+
+		/** 
     	* Função para cadastrar o evento
     	* @access public 
     	* @param $nome, $descricao, $localização, $dataInicio, $dataFim, $lembrete, $ativo, $eventoTipo, $curso, $recorrencia, $eventoOrigem, $sessao
@@ -94,7 +123,7 @@
 			$eventoOrigem = $_REQUEST['eventoOrigem'];
 			$sessao = $_REQUEST['sessao'];
 
-			$sql = "UPDATE USUARIO SET NOME = '$nome', SENHA = '$senha', EMAIL = '$email', ID_SESSAO = $sessao WHERE ID_EVENTO = $usuario";
+			$sql = "UPDATE EVENTO SET NOME = '$nome', DESCRICAO = '$descricao', LOCALIZACAO = '$localizacao', DATA_HORA_INICIO = '$dataInicio', DATA_HORA_TERMINO = '$dataFim', LEMBRETE = $lembrete, ATIVO = $ativo, ID_EVENTO_TIPO = $eventoTipo, ID_CURSO = $curso, ID_SESSAO = $sessao, ID_RECORRENCIA = $recorrencia, ID_EVENTO_ORIGEM = $eventoOrigem WHERE ID_EVENTO = $evento";
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;
@@ -105,19 +134,19 @@
 		}
 
 		/** 
-    	* Função para exclusão lógica do usuário
+    	* Função para exclusão lógica do evento
     	* @access public 
-    	* @param $usuario, $sessao
+    	* @param $evento, $sessao
 		* @return boolean
     	*/ 
-		public function apagarUsuario() {
+		public function apagarEvento() {
 			
 			require 'DefaultModel.php';
 
-			$usuario = $_REQUEST['usuario'];
+			$evento = $_REQUEST['evento'];
 			$sessao = $_REQUEST['sessao'];
 
-			$sql = "UPDATE USUARIO SET ID_SESSAO = $sessao, EXCLUIDO = 1 WHERE ID_USUARIO = $usuario";
+			$sql = "UPDATE EVENTO SET ID_SESSAO = $sessao, EXCLUIDO = 1 WHERE ID_EVENTO = $evento";
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;
