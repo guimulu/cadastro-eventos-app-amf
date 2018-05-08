@@ -38,12 +38,9 @@
     * @return json 
     */ 
     function buscarEventos($eventoModel) {
-        $retorno['status'] = false;
-        
         $resultado = $eventoModel->buscarEventos();
         
         if(!empty($resultado)){
-           $retorno['status'] = true;
            $retorno['dados'] = $resultado; 
         }else{
             $retorno['erro'] = 'Nenhum dado encontrado';

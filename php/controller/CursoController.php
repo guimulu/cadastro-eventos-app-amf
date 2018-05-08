@@ -58,12 +58,9 @@
     * @return json 
     */ 
     function buscarCursos($cursoModel) {
-        $retorno['status'] = false;
-        
         $resultado = $cursoModel->buscarCursos();
         
         if(!empty($resultado)){
-           $retorno['status'] = true;
            $retorno['dados'] = $resultado; 
         }else{
             $retorno['erro'] = 'Nenhum dado encontrado';
