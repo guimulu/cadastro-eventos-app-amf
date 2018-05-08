@@ -38,12 +38,9 @@
     * @return json 
     */ 
     function buscarUsuarios($usuarioModel) {
-        $retorno['status'] = false;
-        
         $resultado = $usuarioModel->buscarUsuarios();
         
         if(!empty($resultado)){
-           $retorno['status'] = true;
            $retorno['dados'] = $resultado; 
         }else{
             $retorno['erro'] = 'Nenhum dado encontrado';

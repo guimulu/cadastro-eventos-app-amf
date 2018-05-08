@@ -44,6 +44,10 @@ function possuiSessao() {
 	}
 }
 
+function isChecked(obj) {
+	return obj.is(":checked") ? 1 : 0;
+}
+
 $(document)
 .ajaxStart(function(){
     $('#spinner').show();
