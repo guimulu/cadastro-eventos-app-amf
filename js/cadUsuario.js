@@ -23,7 +23,7 @@ function cadastrarUsuario(){
     dados.nome = $('#nome').val();
     dados.email = $('#email').val();
     dados.senha = $('#senha').val();
-    dados.excluido = isChecked($('#excluido'));
+    dados.excluido = isChecked($('#excluido')) == 0 ? 1 : 0;
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'cadastrarUsuario';  
     $.ajax({
@@ -81,8 +81,37 @@ function carregarDadosEditar(data) {
     M.updateTextFields();
 }
 
+function editarUsuario() {
+    var dados = new Object();
+    dados.nome = $('#nome').val();
+    dados.email = $('#email').val();
+    dados.senha = $('#senha').val();
+    dados.excluido = isChecked($('#excluido')) == 0 ? 1 : 0;
+    dados.sessao = $.session.get('session_login');
+    dados.operacao = 'alterarUsuario';  
+    $.ajax({
+        url: 'php/controller/usuarioController.php',
+        data: dados,
+        dataType: 'json',
+        async: false
+    }).done(function(resultado) {
+        console.log(resultado);
+        if (resultado.status) {
+            limparCamposUsuario();
+            buscarUsuarios();
+        } else {
+            console.log('deu pau');
+        } 
+    });
+}
+
 function limparCamposUsuario(){
     $('#nome').val('');
     $('#email').val('');
     $('#senha').val('');
 }
+
+$("#salvar").click(function() {
+    cadastrarUsuario();
+    editarUsuario();
+});

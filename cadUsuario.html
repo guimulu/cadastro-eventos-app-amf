@@ -1,5 +1,5 @@
 <div id="pg-cad-usuario" class="pagina">
-    <link href="css/cadUsuario.css" rel="stylesheet">
+    <link  href="css/cadUsuario.css" rel="stylesheet">
     <script type="text/javascript" src="js/cadUsuario.js"></script>
     
     <div class="titulo">
@@ -38,17 +38,17 @@
                     <input id="senha" type="password" class="validate">
                     <label for="senha" class="">Senha</label>
                 </div>
-                <p>
+                <div class="input-field col s12">
                     <label>
                         <input type="checkbox" id="excluido" />
-                        <span>Inativo</span>
+                        <span>Ativo</span>
                     </label>
-                </p>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="cadastrarUsuario();">Salvar</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="salvar">Salvar</a>
         </div>
     </div>
 </div>
