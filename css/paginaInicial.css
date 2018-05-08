@@ -111,3 +111,11 @@
     float: right;
     right: 5%;
 }
+
+.mdl-button--raised.mdl-button--colored {
+    background: #039be5;
+}
+
+.mdl-button--raised.mdl-button--colored:hover {
+    background: #0571a5;
+}
