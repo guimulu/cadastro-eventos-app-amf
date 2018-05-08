@@ -1,30 +1,30 @@
 <?php
 	/** 
- 	* Controller destinada as tarefas relacionadas ao usuário
+ 	* Controller destinada as tarefas relacionadas aos eventos
 	*
 	* @author Augusto Gehrke <augustogehrke@outlook.com>
 	* @copyright  AMF © 2018
 	* @access public  
 	* @package php/controller 
     */
-    include_once("../model/UsuarioModel.php");
+    include_once("../model/EventoModel.php");
 
     $operacao = $_REQUEST['operacao'];
 
-    $usuarioModel = new UsuarioModel();
+    $eventoModel = new EventoModel();
 
     switch ($operacao) {
-        case 'cadastrarUsuario':
-            cadastrarUsuario($usuarioModel);
+        case 'cadastrarEvento':
+            cadastrarEvento($eventoModel);
             break;
-        case 'apagarUsuario':
-            apagarUsuario($usuarioModel);
+        case 'apagarEvento':
+            apagarEvento($eventoModel);
             break;
-        case 'alterarUsuario':
-            alterarUsuario($usuarioModel);
+        case 'alterarEvento':
+            alterarEvento($eventoModel);
             break;
-        case 'buscarUsuarios':
-            buscarUsuarios($usuarioModel);
+        case 'buscarEventos':
+            buscarEventos($eventoModel);
             break;
         default:
             echo "Nenhuma operação encontrada!";
@@ -32,13 +32,13 @@
     }
     
     /** 
-    * Função destinada para a busca dos cursos
+    * Função destinada para a busca dos eventos
     * @access public 
-    * @param $usuarioModel 
+    * @param $eventoModel 
     * @return json 
     */ 
-    function buscarUsuarios($usuarioModel) {
-        $resultado = $usuarioModel->buscarUsuarios();
+    function buscarEventos($eventoModel) {
+        $resultado = $eventoModel->buscarEventos();
         
         if(!empty($resultado)){
            $retorno['dados'] = $resultado; 
@@ -50,62 +50,62 @@
     }
 
     /** 
-    * Função destinada ao cadastro do usuário
+    * Função destinada ao cadastro do evento
     * @access public 
-    * @param $usuarioModel 
+    * @param $eventoModel 
     * @return json 
     */ 
-    function cadastrarUsuario($usuarioModel) {
+    function cadastrarEvento($eventoModel) {
         $retorno['status'] = false;
         
-        $resultado = $usuarioModel->cadastrarUsuario();
+        $resultado = $eventoModel->cadastrarEvento();
 
         if ($resultado) {
             $retorno['status'] = true;
             echo json_encode($retorno);
         } else {
-            $retorno['erro'] = 'Erro ao cadastrar usuário';
+            $retorno['erro'] = 'Erro ao cadastrar evento';
             echo json_encode($retorno);    
         }
     }
 
     /** 
-    * Função destinada para exclusão lógica do usuário
+    * Função destinada para exclusão lógica do evento
     * @access public 
-    * @param $usuarioModel 
+    * @param $eventoModel 
     * @return json 
     */ 
-    function apagarUsuario($usuarioModel) {
+    function apagarEvento($eventoModel) {
         $retorno['status'] = false;
         
-        $resultado = $usuarioModel->apagarUsuario();
+        $resultado = $eventoModel->apagarEvento();
 
         if ($resultado) {
             $retorno['status'] = true;
             echo json_encode($retorno);
         } else {
-            $retorno['erro'] = 'Erro ao deletar usuário';
+            $retorno['erro'] = 'Erro ao deletar evento';
             echo json_encode($retorno);    
         }
 
     }
 
     /** 
-    * Função destinada para alteração do usuário
+    * Função destinada para alteração do evento
     * @access public 
-    * @param $usuarioModel 
+    * @param $eventoModel 
     * @return json 
     */ 
-    function alterarUsuario($usuarioModel) {
+    function alterarEvento($eventoModel) {
         $retorno['status'] = false;
         
-        $resultado = $usuarioModel->alterarUsuario();
+        $resultado = $eventoModel->alterarEvento();
 
         if ($resultado) {
             $retorno['status'] = true;
             echo json_encode($retorno);
         } else {
-            $retorno['erro'] = 'Erro ao alterar usuário';
+            $retorno['erro'] = 'Erro ao alterar evento';
             echo json_encode($retorno);    
         }
 

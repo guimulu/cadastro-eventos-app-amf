@@ -3,8 +3,13 @@
  * @author Guilherme Müller
  */
 $(function() {
-	carregarHTML('paginaInicial.html');
-	//carregarHTML('login.html');
+	if (possuiSessao()) {
+		carregarHTML('paginaInicial.html')
+		//carregarHTML('cadUsuario.html');
+	} else {
+		carregarHTML('login.html');
+	}
+
 });
 
 /**
@@ -16,3 +21,37 @@ var carregarHTML = function(url){
 		$('#conteudo').html(data);
 	})
 };
+
+/**
+ * Método de inserção de html no conteudo.
+ * @param {endereço da página html} url 
+ */
+var carregarHTMLPaginaInicial = function(url){
+	return $.get(url, function(data){
+		$('#content').html(data);
+	})
+};
+
+function encerrarSessao(){
+	$.session.remove('session_login');
+}
+
+function possuiSessao() {
+	if ($.session.get('session_login')) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isChecked(obj) {
+	return obj.is(":checked") ? 1 : 0;
+}
+
+$(document)
+.ajaxStart(function(){
+    $('#spinner').show();
+})
+.ajaxStop(function(){
+    $('#spinner').hide();
+});

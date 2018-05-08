@@ -7,7 +7,7 @@
 	* @access public  
 	* @package php/model 
 	*/ 
-    $servidor = "mysql.dickow.me"; 
+    $servidor = "mysql762.umbler.com:41890"; 
     $usuario = "dickow01"; 
     $senha = "5o0Aitkw3Hkz"; 
     $banco = "dickow01"; 

@@ -1,3 +1,25 @@
 body {
     font-family: 'Josefin Sans', sans-serif;
 }
+
+.pagina{
+    margin-top: 74px;
+}
+
+#spinner{
+    top: 0;
+	width: 100%;
+    height: 100%;
+    z-index: 9999999999;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    position: absolute;
+    text-align: center;
+}
+
+#loader {
+    position: absolute;
+    left: calc(50% - 150px);
+    top: 30%;
+    z-index: 999999999999;
+}

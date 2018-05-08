@@ -23,8 +23,9 @@
 			$email = $_REQUEST['email'];
 			$senha = $_REQUEST['senha'];
 			$sessao = $_REQUEST['sessao'];
+			$excluido = $_REQUEST['excluido'];
 
-			$sql = "INSERT INTO USUARIO(NOME, SENHA, EMAIL, ID_SESSAO) VALUES('$nome', '$senha', '$email', $sessao)";
+			$sql = "INSERT INTO USUARIO(NOME, SENHA, EMAIL, ID_SESSAO, EXCLUIDO) VALUES('$nome', '$senha', '$email', $sessao, $excluido)";
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;
@@ -50,7 +51,7 @@
 
  			if (mysqli_num_rows($query) > 0 ) {
 				
-				while($dados = mysqli_fetch_assoc($query)){
+				while($dados = mysqli_fetch_object($query)){
 					$retorno[] = $dados; 
 				}    
 		
@@ -77,8 +78,9 @@
 			$email = $_REQUEST['email'];
 			$senha = $_REQUEST['senha'];
 			$sessao = $_REQUEST['sessao'];
+			$excluido = $_REQUEST['excluido'];
 
-			$sql = "UPDATE USUARIO SET NOME = '$nome', SENHA = '$senha', EMAIL = '$email', ID_SESSAO = $sessao WHERE ID_USUARIO = $usuario";
+			$sql = "UPDATE USUARIO SET NOME = '$nome', SENHA = '$senha', EMAIL = '$email', ID_SESSAO = $sessao, EXCLUIDO = $excluido WHERE ID_USUARIO = $usuario";
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;

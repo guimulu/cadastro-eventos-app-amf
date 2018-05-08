@@ -1,30 +1,30 @@
 <?php
 	/** 
- 	* Controller destinada as tarefas relacionadas ao usuário
+ 	* Controller destinada as tarefas relacionadas aos tipos eventos
 	*
 	* @author Augusto Gehrke <augustogehrke@outlook.com>
 	* @copyright  AMF © 2018
 	* @access public  
 	* @package php/controller 
     */
-    include_once("../model/UsuarioModel.php");
+    include_once("../model/TipoEventoModel.php");
 
     $operacao = $_REQUEST['operacao'];
 
-    $usuarioModel = new UsuarioModel();
+    $tipoEventoModel = new TipoEventoModel();
 
     switch ($operacao) {
-        case 'cadastrarUsuario':
-            cadastrarUsuario($usuarioModel);
+        case 'cadastrarTipoEvento':
+            cadastrarTipoEvento($tipoEventoModel);
             break;
-        case 'apagarUsuario':
-            apagarUsuario($usuarioModel);
+        case 'apagarTipoEvento':
+            apagarTipoEvento($tipoEventoModel);
             break;
-        case 'alterarUsuario':
-            alterarUsuario($usuarioModel);
+        case 'alterarTipoEvento':
+            alterarTipoEvento($tipoEventoModel);
             break;
-        case 'buscarUsuarios':
-            buscarUsuarios($usuarioModel);
+        case 'buscarTiposEventos':
+            buscarTiposEventos($tipoEventoModel);
             break;
         default:
             echo "Nenhuma operação encontrada!";
@@ -32,13 +32,13 @@
     }
     
     /** 
-    * Função destinada para a busca dos cursos
+    * Função destinada para a busca dos tipos de eventos
     * @access public 
-    * @param $usuarioModel 
+    * @param $tipoEventoModel 
     * @return json 
     */ 
-    function buscarUsuarios($usuarioModel) {
-        $resultado = $usuarioModel->buscarUsuarios();
+    function buscarTiposEventos($tipoEventoModel) {
+        $resultado = $tipoEventoModel->buscarTiposEventos();
         
         if(!empty($resultado)){
            $retorno['dados'] = $resultado; 
@@ -50,62 +50,62 @@
     }
 
     /** 
-    * Função destinada ao cadastro do usuário
+    * Função destinada ao cadastro do tipo de evento
     * @access public 
-    * @param $usuarioModel 
+    * @param $tipoEventoModel 
     * @return json 
     */ 
-    function cadastrarUsuario($usuarioModel) {
+    function cadastrarTipoEvento($tipoEventoModel) {
         $retorno['status'] = false;
         
-        $resultado = $usuarioModel->cadastrarUsuario();
+        $resultado = $tipoEventoModel->cadastrarTipoEvento();
 
         if ($resultado) {
             $retorno['status'] = true;
             echo json_encode($retorno);
         } else {
-            $retorno['erro'] = 'Erro ao cadastrar usuário';
+            $retorno['erro'] = 'Erro ao cadastrar o tipo de evento';
             echo json_encode($retorno);    
         }
     }
 
     /** 
-    * Função destinada para exclusão lógica do usuário
+    * Função destinada para exclusão lógica do tipo de evento
     * @access public 
-    * @param $usuarioModel 
+    * @param $tipoEventoModel 
     * @return json 
     */ 
-    function apagarUsuario($usuarioModel) {
+    function apagarTipoEvento($tipoEventoModel) {
         $retorno['status'] = false;
         
-        $resultado = $usuarioModel->apagarUsuario();
+        $resultado = $tipoEventoModel->apagarTipoEvento();
 
         if ($resultado) {
             $retorno['status'] = true;
             echo json_encode($retorno);
         } else {
-            $retorno['erro'] = 'Erro ao deletar usuário';
+            $retorno['erro'] = 'Erro ao deletar o tipo de evento';
             echo json_encode($retorno);    
         }
 
     }
 
     /** 
-    * Função destinada para alteração do usuário
+    * Função destinada para alteração do tipo de evento
     * @access public 
-    * @param $usuarioModel 
+    * @param $tipoEventoModel 
     * @return json 
     */ 
-    function alterarUsuario($usuarioModel) {
+    function alterarTipoEvento($tipoEventoModel) {
         $retorno['status'] = false;
         
-        $resultado = $usuarioModel->alterarUsuario();
+        $resultado = $tipoEventoModel->alterarTipoEvento();
 
         if ($resultado) {
             $retorno['status'] = true;
             echo json_encode($retorno);
         } else {
-            $retorno['erro'] = 'Erro ao alterar usuário';
+            $retorno['erro'] = 'Erro ao alterar o tipo de evento';
             echo json_encode($retorno);    
         }
 
