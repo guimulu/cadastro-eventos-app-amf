@@ -21,11 +21,10 @@
 
 			$nome = $_REQUEST['nome'];
 			$email = $_REQUEST['email'];
-			$senha = $_REQUEST['senha'];
+			$senha = md5($_REQUEST['senha']);
 			$sessao = $_REQUEST['sessao'];
-			$excluido = $_REQUEST['excluido'];
 
-			$sql = "INSERT INTO USUARIO(NOME, SENHA, EMAIL, ID_SESSAO, EXCLUIDO) VALUES('$nome', '$senha', '$email', $sessao, $excluido)";
+			$sql = "INSERT INTO USUARIO(NOME, SENHA, EMAIL, ID_SESSAO) VALUES('$nome', '$senha', '$email', $sessao)";
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;
@@ -52,7 +51,7 @@
  			if (mysqli_num_rows($query) > 0 ) {
 				
 				while($dados = mysqli_fetch_object($query)){
-					$retorno[] = $dados;
+					$retorno[] = $dados; 
 				}    
 		
 				return $retorno;

@@ -38,12 +38,9 @@
     * @return json 
     */ 
     function buscarTiposEventos($tipoEventoModel) {
-        $retorno['status'] = false;
-        
         $resultado = $tipoEventoModel->buscarTiposEventos();
         
         if(!empty($resultado)){
-           $retorno['status'] = true;
            $retorno['dados'] = $resultado; 
         }else{
             $retorno['erro'] = 'Nenhum dado encontrado';
