@@ -79,7 +79,12 @@
 			$sessao = $_REQUEST['sessao'];
 			$excluido = $_REQUEST['excluido'];
 
-			$sql = "UPDATE USUARIO SET NOME = '$nome', SENHA = '$senha', EMAIL = '$email', ID_SESSAO = $sessao, EXCLUIDO = $excluido WHERE ID_USUARIO = $usuario";
+			if(!empty($senha)){
+				$senha = md5($senha);
+				$sql = "UPDATE USUARIO SET NOME = '$nome', SENHA = '$senha', EMAIL = '$email', ID_SESSAO = $sessao, EXCLUIDO = $excluido WHERE ID_USUARIO = $usuario";
+			}else{
+				$sql = "UPDATE USUARIO SET NOME = '$nome', EMAIL = '$email', ID_SESSAO = $sessao, EXCLUIDO = $excluido WHERE ID_USUARIO = $usuario";
+			}
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;
