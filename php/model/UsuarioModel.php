@@ -44,7 +44,7 @@
 			
 			require 'DefaultModel.php';
 			
-			$sql = "SELECT * FROM USUARIO";
+			$sql = "SELECT ID_USUARIO, NOME, EMAIL, EXCLUIDO FROM USUARIO";
 			 
 			$query = mysqli_query($conexao, $sql);
 
