@@ -1,21 +1,31 @@
 $(document).ready(function(e) { 
+    var cadastrar = true;
     $('#modal-usuario').modal();
     table = $('#dt-usuarios').DataTable({
         "language": {
             "url": "js/datatable-traducao.json"
         },
-        "pageLength": 5
+        "pageLength": 5,
+        "lengthMenu": [5, 10, 25]
     });
     buscarUsuarios();
     $('#dt-usuarios tbody').on('dblclick', 'tr', function () {
         var data = table.row( this ).data();
         carregarDadosEditar(data);
+        cadastrar = false;
+        console.log(cadastrar);
     } );
     
 });
-    
-    /** 
-     * Método de login do usuário.
+
+function novo() {
+    $('#modal-usuario').modal('open'); 
+    limparCamposUsuario();
+    cadastrar = true;
+}
+
+/** 
+ * Método de login do usuário.
  * @author Guilherme Müller
  */
 function cadastrarUsuario(){
@@ -69,6 +79,7 @@ function buscarUsuarios(){
             ] );      
         });
     });
+    $("#dt-usuarios_filter > label > input").attr("placeholder", "Pesquisar");    
 }
 
 function carregarDadosEditar(data) {
@@ -111,7 +122,20 @@ function limparCamposUsuario(){
     $('#senha').val('');
 }
 
-$("#salvar").click(function() {
-    cadastrarUsuario();
-    editarUsuario();
-});
+function salvar() {
+    if (validEmail($('#email').val())) {
+        if (cadastrar) {
+            console.log("cadastrar " + cadastrar);
+            cadastrarUsuario();
+        } else {
+            editarUsuario();
+            console.log("cadastrar" + cadastrar);
+        }
+    } else {
+        alert('E-mail Inválido!');
+    }
+}
+
+function validEmail(email){
+    return /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email)
+}
