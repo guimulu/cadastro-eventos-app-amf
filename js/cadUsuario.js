@@ -1,5 +1,5 @@
+var cadastrar = true;
 $(document).ready(function(e) { 
-    var cadastrar = true;
     $('#modal-usuario').modal();
     table = $('#dt-usuarios').DataTable({
         "language": {
@@ -13,7 +13,6 @@ $(document).ready(function(e) {
         var data = table.row( this ).data();
         carregarDadosEditar(data);
         cadastrar = false;
-        console.log(cadastrar);
     } );
     
 });
@@ -42,12 +41,11 @@ function cadastrarUsuario(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log(resultado);
         if (resultado.status) {
             limparCamposUsuario();
             buscarUsuarios();
         } else {
-            console.log('deu pau');
+            alert('Falha ao inserir registro!');
         } 
     });
 }
@@ -67,7 +65,6 @@ function buscarUsuarios(){
         async: false
     }).done(function(resultado) {
         var data = resultado.dados;    
-        console.log(data);
         table.clear().draw();
         $.each(data, function(index, data) {     
             //!!!--Here is the main catch------>fnAddData
@@ -83,11 +80,10 @@ function buscarUsuarios(){
 }
 
 function carregarDadosEditar(data) {
-    console.log(data);
+    $('#usuario').val(data[0]);
     $('#nome').val(data[1]);
     $('#email').val(data[2]);
-    $('#senha').val(data[2]);
-    $('#excluido').prop('checked', data[3].indexOf("box_outline") > -1 ? true : false);
+    $('#excluido').prop('checked', data[2].indexOf("box_outline") > -1 ? true : false);
     $('#modal-usuario').modal('open');
     M.updateTextFields();
 }
@@ -97,21 +93,22 @@ function editarUsuario() {
     dados.nome = $('#nome').val();
     dados.email = $('#email').val();
     dados.senha = $('#senha').val();
+    dados.usuario = $('#usuario').val();
     dados.excluido = isChecked($('#excluido')) == 0 ? 1 : 0;
     dados.sessao = $.session.get('session_login');
-    dados.operacao = 'alterarUsuario';  
+    dados.operacao = 'alterarUsuario';
+    console.log(dados);
     $.ajax({
         url: 'php/controller/usuarioController.php',
         data: dados,
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log(resultado);
         if (resultado.status) {
             limparCamposUsuario();
             buscarUsuarios();
         } else {
-            console.log('deu pau');
+            alert('Problemas ao editar registro!');
         } 
     });
 }
@@ -125,11 +122,9 @@ function limparCamposUsuario(){
 function salvar() {
     if (validEmail($('#email').val())) {
         if (cadastrar) {
-            console.log("cadastrar " + cadastrar);
             cadastrarUsuario();
         } else {
             editarUsuario();
-            console.log("cadastrar" + cadastrar);
         }
     } else {
         alert('E-mail Inválido!');
