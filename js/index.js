@@ -1,3 +1,25 @@
+function mensagemSucesso(){
+    swal({
+        position: 'top-center',
+        type: 'success',
+        title: 'Operação realizada!',
+        showConfirmButton: true,
+        timer: 1500
+      })
+}
+
+function mensagemErro(){
+    swal({
+        position: 'top-center',
+        type: 'error',
+        title: 'Operação não realizada!',
+        showConfirmButton: true,
+        timer: 1500
+    })
+}
+
+
+
 /**
  * Classe principal do sistema "main"
  * @author Guilherme Müller
