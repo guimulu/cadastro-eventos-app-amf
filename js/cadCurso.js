@@ -1,8 +1,30 @@
+var cadastrar = true;
 $(document).ready(function(e) { 
     $('#modal-cursos').modal();
-    $('#dt-cursos').DataTable();
+    table = $('#dt-cursos').DataTable({
+        "language": {
+            "url": "js/datatable-traducao.json"
+        },
+        "pageLength": 5,
+        "lengthMenu": [5, 10, 25]
+    });
+    buscarCursos();
+    $('#dt-usuarios tbody').on('dblclick', 'tr', function () {
+        var data = table.row( this ).data();
+        //carregarDadosEditar(data);
+        cadastrar = false;
+    } );
+
 });
 
+function carregarDadosEditar(data) {
+    $('#usuario').val(data[0]);
+    $('#nome').val(data[1]);
+    $('#email').val(data[2]);
+    $('#excluido').prop('checked', data[2].indexOf("box_outline") > -1 ? true : false);
+    $('#modal-usuario').modal('open');
+    M.updateTextFields();
+}
 /** 
  * Método de login do usuário.
  * @author Guilherme Müller
@@ -10,8 +32,7 @@ $(document).ready(function(e) {
 function cadastrarCurso(){
     var dados = new Object();
     dados.nome = $('#nome').val();
-    dados.email = $('#email').val();
-    dados.senha = $('#senha').val();
+    dados.logo = $('#logo').val();
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'cadastrarCurso';  
     $.ajax({
@@ -41,9 +62,19 @@ function buscarCursos(){
     }).done(function(resultado){
         console.log(resultado);
         if (resultado.status) {
-            limparCamposCurso();
+            console.log(resultado);
+            var data = resultado.dados;    
+            table.clear().draw();
+            $.each(data, function(index, data) {     
+                $('#dt-cursos').dataTable().fnAddData( [
+                    data.ID_CURSO,
+                    data.NOME,
+                    data.EMAIL,
+                    data.EXCLUIDO == 0 ? '<i class="material-icons">check_box</i>' : '<i class="material-icons">check_box_outline_blank</i>'
+                ] );      
+            });
         } else {
-            console.log('deu ruim');
+            mensagemInfo("Nenhum registro encontrado");
         }
     });
 }
