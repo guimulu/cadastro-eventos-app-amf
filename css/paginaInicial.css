@@ -100,6 +100,7 @@
     padding: 10px;
     margin-left: calc(50% - 106px);
     position: absolute;
+    margin-top: 10px;
 }
 
 .titulo {
@@ -118,4 +119,9 @@
 
 .mdl-button--raised.mdl-button--colored:hover {
     background: #0571a5;
+}
+
+#dt-usuarios_length > label > select {
+    display: inherit !important;
+    width: 62px !important;
 }

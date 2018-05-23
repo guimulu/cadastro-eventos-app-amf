@@ -1,3 +1,42 @@
+function mensagemSucesso(msg){
+	var titulo = 'Operação realizada com sucesso!';
+	if (msg){
+		titulo = msg;
+	}
+    swal({
+        position: 'top-center',
+        type: 'success',
+        title: titulo,
+        showConfirmButton: true,
+        timer: 1500
+      })
+}
+
+function mensagemErro(msg){
+	var titulo = 'Erro ao realizar operação!';
+	if (msg) {
+		titulo = msg;
+	}
+    swal({
+        position: 'top-center',
+        type: 'error',
+        title: titulo,
+        showConfirmButton: true,
+        timer: 1500
+    })
+}
+
+function mensagemInfo(msg) {
+	swal({
+        position: 'bottom-right',
+        type: 'info',
+        title: msg,
+        showConfirmButton: true,
+        timer: 1500
+    })
+}
+
+
 /**
  * Classe principal do sistema "main"
  * @author Guilherme Müller
