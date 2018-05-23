@@ -30,15 +30,20 @@ function carregarDadosEditar(data) {
  * @author Guilherme Müller
  */
 function cadastrarCurso(){
-    var dados = new Object();
-    dados.nome = $('#nome').val();
-    dados.logo = $('#logo').val();
-    dados.sessao = $.session.get('session_login');
-    dados.operacao = 'cadastrarCurso';  
+    var dados = new FormData();
+    dados.append("nome", $('#nome').val());
+    dados.append("logo", $('#logo')[0].files[0]);
+    dados.append("sessao", $.session.get('session_login'));
+    dados.append("operacao", "cadastrarCurso"); 
+    console.log(dados); 
     $.ajax({
-        url: 'php/controller/cursoController.php',
+        url: 'php/controller/CursoController.php',
         data: dados,
-        dataType: 'json',
+        contentType: false,
+        processData: false,
+        cache: false,
+        type: "POST",
+        //dataType: 'json',
         async: false
     }).done(function(resultado) {
         console.log(resultado);
@@ -55,7 +60,7 @@ function buscarCursos(){
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'buscarCursos';
     $.ajax({
-        url: 'php/controller/cursoController.php',
+        url: 'php/controller/CursoController.php',
         data: dados,
         dataType: 'json',
         async: false
