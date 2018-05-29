@@ -58,7 +58,6 @@
 			}
 			
 			$foto = $_FILES['logo'];
-			$nome = $foto['name'];
 			$tipo = $foto['type'];
 			$tamanho = $foto['size'];
 
@@ -70,10 +69,11 @@
 				return "A imagem deve possuir no máximo 2 MB!";
 			}
 
-			$conteudo = file_get_contents($foto['tmp_name']);
+			$conteudo = base64_encode($foto['tmp_name']);
 			
-			$sql = "INSERT INTO CURSO(NOME, LOGO, ID_SESSAO) VALUES('$nome', $conteudo, $sessao)";
-			 
+
+			$sql = "INSERT INTO CURSO(NOME, LOGO, ID_SESSAO) VALUES('$nome', '$conteudo', $sessao)";
+
 			if($conexao->query($sql) === TRUE) {
 				return true;
 		  	}else{
