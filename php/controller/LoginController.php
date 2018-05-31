@@ -32,7 +32,7 @@
         $retorno['status'] = false;
 
         $resultado = $loginModel->verificarUsuario();
-        
+
         if (empty($resultado)) {
             $retorno['erro'] = 'Usuario nao encontrado';
             echo json_encode($retorno);    

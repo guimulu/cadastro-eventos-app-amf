@@ -21,11 +21,11 @@
 			require 'DefaultModel.php';
 
 			$email = $_REQUEST['email'];
-			$senha = $_REQUEST['senha'];
+			$senha = md5($_REQUEST['senha']);
 
  			$sql = "SELECT * FROM USUARIO WHERE EMAIL = '$email' AND SENHA = '$senha' AND EXCLUIDO <> 1 ";
-			
- 			$query = mysqli_query($conexao, $sql);
+
+			$query = mysqli_query($conexao, $sql);
 
  			if (mysqli_num_rows($query) > 0 ) {
 				return mysqli_fetch_assoc($query);

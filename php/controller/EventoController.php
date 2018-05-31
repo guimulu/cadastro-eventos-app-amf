@@ -26,11 +26,31 @@
         case 'buscarEventos':
             buscarEventos($eventoModel);
             break;
+        case 'buscarRecorrencias':
+            buscarRecorrencias($eventoModel);
+            break;
         default:
             echo "Nenhuma operação encontrada!";
             break;
     }
-    
+     /** 
+    * Função destinada para buscar as recorrências 
+    * @access public 
+    * @param $eventoModel 
+    * @return json 
+    */ 
+    function buscarRecorrencias($eventoModel) {
+        $resultado = $eventoModel->buscarRecorrencias();
+        
+        if(!empty($resultado)){
+           $retorno['dados'] = $resultado; 
+        }else{
+            $retorno['erro'] = 'Nenhum dado encontrado';
+        }
+
+        echo json_encode($retorno);
+    }
+
     /** 
     * Função destinada para a busca dos eventos
     * @access public 

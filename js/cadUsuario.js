@@ -1,21 +1,30 @@
+var cadastrar = true;
 $(document).ready(function(e) { 
     $('#modal-usuario').modal();
     table = $('#dt-usuarios').DataTable({
         "language": {
             "url": "js/datatable-traducao.json"
         },
-        "pageLength": 5
+        "pageLength": 5,
+        "lengthMenu": [5, 10, 25]
     });
     buscarUsuarios();
     $('#dt-usuarios tbody').on('dblclick', 'tr', function () {
         var data = table.row( this ).data();
         carregarDadosEditar(data);
+        cadastrar = false;
     } );
     
 });
-    
-    /** 
-     * Método de login do usuário.
+
+function novo() {
+    $('#modal-usuario').modal('open'); 
+    limparCamposUsuario();
+    cadastrar = true;
+}
+
+/** 
+ * Método de login do usuário.
  * @author Guilherme Müller
  */
 function cadastrarUsuario(){
@@ -32,12 +41,11 @@ function cadastrarUsuario(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log(resultado);
         if (resultado.status) {
             limparCamposUsuario();
             buscarUsuarios();
         } else {
-            console.log('deu pau');
+            alert('Falha ao inserir registro!');
         } 
     });
 }
@@ -57,7 +65,6 @@ function buscarUsuarios(){
         async: false
     }).done(function(resultado) {
         var data = resultado.dados;    
-        console.log(data);
         table.clear().draw();
         $.each(data, function(index, data) {     
             //!!!--Here is the main catch------>fnAddData
@@ -69,14 +76,14 @@ function buscarUsuarios(){
             ] );      
         });
     });
+    $("#dt-usuarios_filter > label > input").attr("placeholder", "Pesquisar");    
 }
 
 function carregarDadosEditar(data) {
-    console.log(data);
+    $('#usuario').val(data[0]);
     $('#nome').val(data[1]);
     $('#email').val(data[2]);
-    $('#senha').val(data[2]);
-    $('#excluido').prop('checked', data[3].indexOf("box_outline") > -1 ? true : false);
+    $('#excluido').prop('checked', data[2].indexOf("box_outline") > -1 ? true : false);
     $('#modal-usuario').modal('open');
     M.updateTextFields();
 }
@@ -86,21 +93,22 @@ function editarUsuario() {
     dados.nome = $('#nome').val();
     dados.email = $('#email').val();
     dados.senha = $('#senha').val();
+    dados.usuario = $('#usuario').val();
     dados.excluido = isChecked($('#excluido')) == 0 ? 1 : 0;
     dados.sessao = $.session.get('session_login');
-    dados.operacao = 'alterarUsuario';  
+    dados.operacao = 'alterarUsuario';
+    console.log(dados);
     $.ajax({
         url: 'php/controller/usuarioController.php',
         data: dados,
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log(resultado);
         if (resultado.status) {
             limparCamposUsuario();
             buscarUsuarios();
         } else {
-            console.log('deu pau');
+            alert('Problemas ao editar registro!');
         } 
     });
 }
@@ -111,7 +119,18 @@ function limparCamposUsuario(){
     $('#senha').val('');
 }
 
-$("#salvar").click(function() {
-    cadastrarUsuario();
-    editarUsuario();
-});
+function salvar() {
+    if (validEmail($('#email').val())) {
+        if (cadastrar) {
+            cadastrarUsuario();
+        } else {
+            editarUsuario();
+        }
+    } else {
+        alert('E-mail Inválido!');
+    }
+}
+
+function validEmail(email){
+    return /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email)
+}

@@ -9,7 +9,7 @@
     */
     include_once("../model/CursoModel.php");
 
-    $operacao = $_REQUEST['operacao'];
+    $operacao = $_POST['operacao'];
 
     $cursoModel = new CursoModel();
 
@@ -39,7 +39,7 @@
     */ 
     function cadastrarCurso($cursoModel) {
         $retorno['status'] = false;
-        
+
         $resultado = $cursoModel->cadastrarCurso();
 
         if ($resultado) {
