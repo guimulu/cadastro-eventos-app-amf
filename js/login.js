@@ -32,11 +32,11 @@ function logar(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log(resultado);
         if (resultado.status == true) {
             $.session.set('session_login', resultado.dados.sessao);
             carregarHTML('paginaInicial.html');
-            console.log('resultado.dados.sessao ', resultado.dados.sessao);
+        } else {
+            mensagemErro('Informações incorretas!');
         }
         
     });
