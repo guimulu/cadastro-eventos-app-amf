@@ -50,7 +50,7 @@
 
 			$nome = $_REQUEST['nome'];
 			$descricao = $_REQUEST['descricao'];
-			$localização = $_REQUEST['localização'];
+			$localizacao = $_REQUEST['localizacao'];
 			$dataInicio = $_REQUEST['dataInicio'];
 			$dataFim = $_REQUEST['dataFim'];
 			$lembrete = $_REQUEST['lembrete'];
@@ -112,7 +112,7 @@
 			$evento = $_REQUEST['evento'];
 			$nome = $_REQUEST['nome'];
 			$descricao = $_REQUEST['descricao'];
-			$localização = $_REQUEST['localização'];
+			$localizacao = $_REQUEST['localizacao'];
 			$dataInicio = $_REQUEST['dataInicio'];
 			$dataFim = $_REQUEST['dataFim'];
 			$lembrete = $_REQUEST['lembrete'];
