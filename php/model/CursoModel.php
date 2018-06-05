@@ -19,7 +19,7 @@
 			
 			require 'DefaultModel.php';
 			
-			$sql = "SELECT * FROM CURSO";
+			$sql = "SELECT ID_CURSO, NOME, ID_SESSAO FROM CURSO WHERE EXCLUIDO = 0";
 			 
 			$query = mysqli_query($conexao, $sql);
 
@@ -70,7 +70,7 @@
 			}
 
 			$conteudo = base64_encode($foto['tmp_name']);
-			
+			// $conteudo = file_get_contents($foto['tmp_name']);
 
 			$sql = "INSERT INTO CURSO(NOME, LOGO, ID_SESSAO) VALUES('$nome', '$conteudo', $sessao)";
 
