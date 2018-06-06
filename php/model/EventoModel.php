@@ -72,6 +72,32 @@
 		}
 
 		/** 
+    	* Função para buscar um evento específico
+    	* @access public 
+		* @return array
+		* @return null
+    	*/ 
+		public function buscarEventoPorId() {
+			
+			require 'DefaultModel.php';
+			
+			$evento = $_REQUEST['evento'];
+
+			$sql = "SELECT * FROM EVENTO E INNER JOIN EVENTO_TIPO ET ON E.ID_EVENTO_TIPO = ET.ID_EVENTO_TIPO INNER JOIN CURSO C ON C.ID_CURSO = E.ID_CURSO INNER JOIN RECORRENCIA R ON R.ID_RECORRENCIA = E.ID_RECORRENCIA WHERE E.ID_EVENTO = $evento";
+			
+			$query = mysqli_query($conexao, $sql);
+
+			if (mysqli_num_rows($query) > 0 ) {
+				$retorno = mysqli_fetch_assoc($query);    
+				return $retorno;
+			} else {
+				return null;
+			}
+
+		}
+
+
+		/** 
     	* Função para buscar os eventos
     	* @access public 
 		* @return array
@@ -81,8 +107,8 @@
 			
 			require 'DefaultModel.php';
 			
-			$sql = "SELECT * FROM EVENTO";
-			 
+			$sql = "SELECT * FROM EVENTO E INNER JOIN EVENTO_TIPO ET ON E.ID_EVENTO_TIPO = ET.ID_EVENTO_TIPO INNER JOIN CURSO C ON C.ID_CURSO = E.ID_CURSO INNER JOIN RECORRENCIA R ON R.ID_RECORRENCIA = E.ID_RECORRENCIA";
+			
 			$query = mysqli_query($conexao, $sql);
 
  			if (mysqli_num_rows($query) > 0 ) {

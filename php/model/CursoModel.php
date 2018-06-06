@@ -70,7 +70,6 @@
 			}
 
 			$conteudo = base64_encode($foto['tmp_name']);
-			// $conteudo = file_get_contents($foto['tmp_name']);
 
 			$sql = "INSERT INTO CURSO(NOME, LOGO, ID_SESSAO) VALUES('$nome', '$conteudo', $sessao)";
 

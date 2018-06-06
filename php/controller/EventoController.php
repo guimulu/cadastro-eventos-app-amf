@@ -26,6 +26,9 @@
         case 'buscarEventos':
             buscarEventos($eventoModel);
             break;
+        case 'buscarEventoPorId':
+            buscarEventoPorId($eventoModel);
+            break;
         case 'buscarRecorrencias':
             buscarRecorrencias($eventoModel);
             break;
@@ -59,6 +62,24 @@
     */ 
     function buscarEventos($eventoModel) {
         $resultado = $eventoModel->buscarEventos();
+        
+        if(!empty($resultado)){
+           $retorno['dados'] = $resultado; 
+        }else{
+            $retorno['erro'] = 'Nenhum dado encontrado';
+        }
+
+        echo json_encode($retorno);
+    }
+
+    /** 
+    * Função destinada para a busca de um evento específico
+    * @access public 
+    * @param $eventoModel 
+    * @return json 
+    */ 
+    function buscarEventoPorId($eventoModel) {
+        $resultado = $eventoModel->buscarEventoPorId();
         
         if(!empty($resultado)){
            $retorno['dados'] = $resultado; 
