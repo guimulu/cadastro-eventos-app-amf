@@ -23,3 +23,8 @@ body {
     top: 30%;
     z-index: 999999999999;
 }
+
+.modal.modal-fixed-footer {
+    top: 3% !important;
+    max-height: calc(96% - 56px) !important;
+}
