@@ -126,7 +126,7 @@ function editarEvento() {
     dados.operacao = 'alterarUsuario';
     console.log(dados);
     $.ajax({
-        url: 'php/controller/usuarioController.php',
+        url: 'php/controller/UsuarioController.php',
         data: dados,
         dataType: 'json',
         async: false

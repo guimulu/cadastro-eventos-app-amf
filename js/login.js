@@ -27,7 +27,7 @@ function logar(){
     dados.email = $('#email').val();
     dados.operacao = 'logar';  
     $.ajax({
-        url: 'php/controller/loginController.php',
+        url: 'php/controller/LoginController.php',
         data: dados,
         dataType: 'json',
         async: false
