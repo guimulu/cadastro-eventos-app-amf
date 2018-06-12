@@ -14,11 +14,12 @@ $(document).ready(function(e) {
         carregarDadosEditar(data);
         cadastrar = false;
     } );
-
     $('#curso').formSelect();
     $('#eventoTipo').formSelect();
     $('#recorrencia').formSelect();
-    
+    listarCursos();
+    listarRecorrencias();
+    listarTipoEventos();
 });
 
 function novo() {
@@ -162,4 +163,64 @@ function salvar() {
     } else {
         editarEvento();
     }
+}
+
+function listarTipoEventos() {
+    var dados = new Object();
+    dados.sessao = $.session.get('session_login');
+    dados.operacao = 'buscarTiposEventos';
+    console.log(dados);
+    $.ajax({
+        url: 'php/controller/TipoEventoController.php',
+        data: dados,
+        dataType: 'json',
+        async: false
+    }).done(function(resultado) {
+        console.log("caacacacacaca");
+        if (resultado) {
+            $('#tipoEvento').formSelect('dropdownOptions', resultado);          
+        } else {
+            alert('Problemas ao buscar tipos de evento!');
+        } 
+    });
+}
+
+function listarCursos() {
+    var dados = new Object();
+    dados.sessao = $.session.get('session_login');
+    dados.operacao = 'buscarCursos';
+    console.log(dados);
+    $.ajax({
+        url: 'php/controller/CursoController.php',
+        data: dados,
+        dataType: 'json',
+        async: false
+    }).done(function(resultado) {
+        console.log("sdasdasdasd");
+        if (resultado) {
+            $('#curso').formSelect('dropdownOptions', resultado);          
+        } else {
+            alert('Problemas ao buscar cursos!');
+        } 
+    });
+}
+
+function listarRecorrencias() {
+    var dados = new Object();
+    dados.sessao = $.session.get('session_login');
+    dados.operacao = 'buscarRecorrencias';
+    console.log(dados);
+    $.ajax({
+        url: 'php/controller/EventoController.php',
+        data: dados,
+        dataType: 'json',
+        async: false
+    }).done(function(resultado) {
+        console.log("cococococo");
+        if (resultado) {
+            $('#recorrencia').formSelect('dropdownOptions', resultado);          
+        } else {
+            alert('Problemas ao buscar recorrências!');
+        } 
+    });
 }
