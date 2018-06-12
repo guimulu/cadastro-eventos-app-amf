@@ -32,6 +32,7 @@ function logar(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
+        console.log(resultado);
         if (resultado.status == true) {
             $.session.set('session_login', resultado.dados.sessao);
             carregarHTML('paginaInicial.html');
