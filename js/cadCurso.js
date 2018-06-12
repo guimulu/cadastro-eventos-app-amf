@@ -56,13 +56,19 @@ function cadastrarCurso(){
 }
 
 function buscarCursos(){
-    dados = new Object();
-    dados.sessao = $.session.get('session_login');
-    dados.operacao = 'buscarCursos';
+    var dados = new FormData()
+    dados.append("sessao", $.session.get('session_login'));
+    dados.append("operacao", "buscarCursos"); 
+    console.log(dados); 
+
     $.ajax({
         url: 'php/controller/CursoController.php',
         data: dados,
-        dataType: 'json',
+        contentType: false,
+        processData: false,
+        cache: false,
+        type: "POST",
+        //dataType: 'json',
         async: false
     }).done(function(resultado){
         console.log(resultado);

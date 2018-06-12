@@ -36,7 +36,7 @@ function cadastrarUsuario(){
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'cadastrarUsuario';  
     $.ajax({
-        url: 'php/controller/usuarioController.php',
+        url: 'php/controller/UsuarioController.php',
         data: dados,
         dataType: 'json',
         async: false
@@ -59,7 +59,7 @@ function buscarUsuarios(){
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'buscarUsuarios';  
     $.ajax({
-        url: 'php/controller/usuarioController.php',
+        url: 'php/controller/UsuarioController.php',
         data: dados,
         dataType: 'json',
         async: false
@@ -99,7 +99,7 @@ function editarUsuario() {
     dados.operacao = 'alterarUsuario';
     console.log(dados);
     $.ajax({
-        url: 'php/controller/usuarioController.php',
+        url: 'php/controller/UsuarioController.php',
         data: dados,
         dataType: 'json',
         async: false

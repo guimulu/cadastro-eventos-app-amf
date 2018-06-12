@@ -27,7 +27,7 @@ function logar(){
     dados.email = $('#email').val();
     dados.operacao = 'logar';  
     $.ajax({
-        url: 'php/controller/loginController.php',
+        url: 'php/controller/LoginController.php',
         data: dados,
         dataType: 'json',
         async: false
@@ -36,7 +36,8 @@ function logar(){
         if (resultado.status == true) {
             $.session.set('session_login', resultado.dados.sessao);
             carregarHTML('paginaInicial.html');
-            console.log('resultado.dados.sessao ', resultado.dados.sessao);
+        } else {
+            mensagemErro('Informações incorretas!');
         }
         
     });

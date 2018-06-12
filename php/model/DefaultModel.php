@@ -7,10 +7,10 @@
 	* @access public  
 	* @package php/model 
 	*/ 
-    $servidor = "mysql762.umbler.com:41890"; 
-    $usuario = "dickow01"; 
-    $senha = "5o0Aitkw3Hkz"; 
-    $banco = "dickow01"; 
+    $servidor = "mysql02-farm67.uni5.net:3306"; 
+    $usuario = "radiske"; 
+    $senha = "radiske2018"; 
+    $banco = "radiske"; 
 
     $conexao = new mysqli($servidor, $usuario, $senha, $banco); 
     

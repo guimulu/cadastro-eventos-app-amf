@@ -1,0 +1,92 @@
+<div id="pg-cad-evento" class="pagina">
+    <link  href="css/cadEvento.css" rel="stylesheet">
+    <script type="text/javascript" src="js/cadEvento.js"></script>
+    
+    <div class="titulo">
+        <span>Eventos</span>
+        <a class="btn-floating btn-large waves-effect waves-light green" onclick="novo();">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+    <div class="tabela">
+        <table id="dt-eventos" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Localização</th>
+                        <th>Data Início</th>
+                        <th>Data Fim</th>
+                        <th>Lembrete</th>
+                        <th>Ativo</th>
+                        <th>Tipo</th>
+                        <th>Curso</th>
+                        <th>Recorrência</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="modal-evento" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Evento</h4>
+            <div class="row">
+                <input id="evento" type="hidden">
+                <div class="input-field col s12">
+                    <input id="nome" type="text" class="validate" maxlength="50">
+                    <label for="nome" class="">Nome</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="descricao" type="text" class="validate" maxlength="100">
+                    <label for="descricao" class="">Descrição</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="localizacao" type="text" class="validate" maxlength="100">
+                    <label for="localizacao" class="">Localização</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="dataInicio" type="text" class="validate" maxlength="100">
+                    <label for="dataInicio" class="">Data Início</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="dataFim" type="text" class="validate" maxlength="100">
+                    <label for="dataFim" class="">Data Fim</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="lembrete" type="text" class="validate" maxlength="100">
+                    <label for="lembrete" class="">Lembrete</label>
+                </div>
+                <div class="input-field col s12">
+                    <label>
+                        <input type="checkbox" id="excluido" />
+                        <span>Ativo</span>
+                    </label>
+                </div>
+                <div class="input-field col s12">
+                    <select id="eventoTipo" class="validate">
+                        <option value="" disabled selected>Escolha um Tipo de Evento</option>
+                    </select>
+                    <label for="eventoTipo" class="">Tipo Evento</label>
+                </div>
+                <div class="input-field col s12">
+                    <select id="curso" class="validate">
+                        <option value="" disabled selected>Escolha um Curso</option>
+                    </select>
+                    <label for="curso" class="">Curso</label>
+                </div>
+                <div class="input-field col s12">
+                    <select id="recorrencia" class="validate">
+                        <option value="" disabled selected>Escolha uma recorrência</option>
+                    </select>
+                    <label for="recorrencia" class="">Recorrência</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="salvar();">Salvar</a>
+        </div>
+    </div>
+</div>
