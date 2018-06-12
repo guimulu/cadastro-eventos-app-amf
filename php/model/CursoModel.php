@@ -136,7 +136,7 @@
 					return "A imagem deve possuir no máximo 2 MB!";
 				}
 
-				$conteudo = file_get_contents($foto['tmp_name']);
+				$conteudo = base64_encode($foto['tmp_name']);
 
 				$sql = "UPDATE CURSO SET NOME = '$nome', LOGO = $conteudo, ID_SESSAO = $sessao WHERE ID_CURSO = $curso";
 			}else{
