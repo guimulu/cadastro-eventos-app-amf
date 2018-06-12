@@ -45,11 +45,10 @@ function cadastrarCurso(){
         //dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log(resultado);
         if (resultado.status) {
             limparCamposCurso();
         } else {
-            console.log('deu pau');
+            mensagemErro(resultado.erro);
         } 
     });
 }

@@ -45,7 +45,7 @@ function cadastrarUsuario(){
             limparCamposUsuario();
             buscarUsuarios();
         } else {
-            alert('Falha ao inserir registro!');
+            mensagemErro(resultado.erro);
         } 
     });
 }
@@ -64,17 +64,22 @@ function buscarUsuarios(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        var data = resultado.dados;    
-        table.clear().draw();
-        $.each(data, function(index, data) {     
+        if(resultado.dados != null){
+            var data = resultado.dados;    
+            table.clear().draw();
+            $.each(data, function(index, data) {     
             //!!!--Here is the main catch------>fnAddData
-            $('#dt-usuarios').dataTable().fnAddData( [
-                data.ID_USUARIO,
-                data.NOME,
-                data.EMAIL,
-                data.EXCLUIDO == 0 ? '<i class="material-icons">check_box</i>' : '<i class="material-icons">check_box_outline_blank</i>'
-            ] );      
-        });
+                $('#dt-usuarios').dataTable().fnAddData( [
+                    data.ID_USUARIO,
+                    data.NOME,
+                    data.EMAIL,
+                    data.EXCLUIDO == 0 ? '<i class="material-icons">check_box</i>' : '<i class="material-icons">check_box_outline_blank</i>'
+                ] );      
+            });
+        } else {
+            mensagemErro(resultado.erro);
+        }
+        
     });
     $("#dt-usuarios_filter > label > input").attr("placeholder", "Pesquisar");    
 }
@@ -97,7 +102,7 @@ function editarUsuario() {
     dados.excluido = isChecked($('#excluido')) == 0 ? 1 : 0;
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'alterarUsuario';
-    console.log(dados);
+
     $.ajax({
         url: 'php/controller/UsuarioController.php',
         data: dados,
@@ -108,7 +113,7 @@ function editarUsuario() {
             limparCamposUsuario();
             buscarUsuarios();
         } else {
-            alert('Problemas ao editar registro!');
+            mensagemErro(resultado.erro);
         } 
     });
 }
