@@ -25,7 +25,7 @@
 
  			if (mysqli_num_rows($query) > 0 ) {
 				
-				while($dados = mysqli_fetch_assoc($query)){
+				while($dados = mysqli_fetch_object($query)){
 					$retorno[] = $dados; 
 				}    
 		

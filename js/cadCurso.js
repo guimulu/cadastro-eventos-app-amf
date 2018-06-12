@@ -9,20 +9,19 @@ $(document).ready(function(e) {
         "lengthMenu": [5, 10, 25]
     });
     buscarCursos();
-    $('#dt-usuarios tbody').on('dblclick', 'tr', function () {
+    $('#dt-cursos tbody').on('dblclick', 'tr', function () {
         var data = table.row( this ).data();
-        //carregarDadosEditar(data);
+        carregarDadosEditar(data);
         cadastrar = false;
     } );
 
 });
 
 function carregarDadosEditar(data) {
-    $('#usuario').val(data[0]);
+    $('#curso').val(data[0]);
     $('#nome').val(data[1]);
-    $('#email').val(data[2]);
     $('#excluido').prop('checked', data[2].indexOf("box_outline") > -1 ? true : false);
-    $('#modal-usuario').modal('open');
+    $('#modal-curso').modal('open');
     M.updateTextFields();
 }
 /** 
@@ -68,19 +67,17 @@ function buscarCursos(){
         processData: false,
         cache: false,
         type: "POST",
-        //dataType: 'json',
+        dataType: 'json',
         async: false
-    }).done(function(resultado){
-        console.log(resultado);
-        if (resultado.status) {
-            console.log(resultado);
+    }).done(function(resultado) {
+        if (resultado) {
+            console.log(resultado.dados);
             var data = resultado.dados;    
             table.clear().draw();
             $.each(data, function(index, data) {     
                 $('#dt-cursos').dataTable().fnAddData( [
                     data.ID_CURSO,
                     data.NOME,
-                    data.EMAIL,
                     data.EXCLUIDO == 0 ? '<i class="material-icons">check_box</i>' : '<i class="material-icons">check_box_outline_blank</i>'
                 ] );      
             });
