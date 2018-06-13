@@ -17,11 +17,17 @@ $(document).ready(function(e) {
 
 });
 
+function novo() {
+    $('#modal-cursos').modal('open');
+    limparCamposCurso();
+    cadastrar = true;
+}
+
 function carregarDadosEditar(data) {
     $('#curso').val(data[0]);
     $('#nome').val(data[1]);
-    $('#excluido').prop('checked', data[2].indexOf("box_outline") > -1 ? true : false);
-    $('#modal-curso').modal('open');
+    $('#excluido').prop('checked', data[2].indexOf("box_outline") > -1 ? false : true);
+    $('#modal-cursos').modal('open');
     M.updateTextFields();
 }
 /** 
@@ -45,8 +51,40 @@ function cadastrarCurso(){
         //dataType: 'json',
         async: false
     }).done(function(resultado) {
-        if (resultado.status) {
+        if (resultado) {
             limparCamposCurso();
+            buscarCursos();
+        } else {
+            mensagemErro(resultado.erro);
+        } 
+    });
+}
+
+/** 
+ * Método de login do usuário.
+ * @author Guilherme Müller
+ */
+function editarCurso(){
+    var dados = new FormData();
+    dados.append("curso", $('#curso').val());
+    dados.append("nome", $('#nome').val());
+    dados.append("logo", $('#logo')[0].files[0]);
+    dados.append("sessao", $.session.get('session_login'));
+    dados.append("operacao", "alterarCurso"); 
+    console.log(dados); 
+    $.ajax({
+        url: 'php/controller/CursoController.php',
+        data: dados,
+        contentType: false,
+        processData: false,
+        cache: false,
+        type: "POST",
+        //dataType: 'json',
+        async: false
+    }).done(function(resultado) {
+        if (resultado) {
+            limparCamposCurso();
+            buscarCursos();
         } else {
             mensagemErro(resultado.erro);
         } 
@@ -69,7 +107,7 @@ function buscarCursos(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        if (resultado) {
+        if (resultado.dados) {
             console.log(resultado.dados);
             var data = resultado.dados;    
             table.clear().draw();
@@ -81,7 +119,7 @@ function buscarCursos(){
                 ] );      
             });
         } else {
-            mensagemInfo("Nenhum registro encontrado");
+            mensagemInfo(resultado.erro);
         }
     });
 }
@@ -89,4 +127,12 @@ function buscarCursos(){
 function limparCamposCurso(){
     $("#nome").val("");
     $("#logo").val("");
+}
+
+function salvar() {
+    if (cadastrar) {
+        cadastrarCurso();
+    } else {
+        editarCurso();
+    }
 }

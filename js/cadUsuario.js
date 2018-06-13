@@ -88,7 +88,7 @@ function carregarDadosEditar(data) {
     $('#usuario').val(data[0]);
     $('#nome').val(data[1]);
     $('#email').val(data[2]);
-    $('#excluido').prop('checked', data[2].indexOf("box_outline") > -1 ? true : false);
+    $('#excluido').prop('checked', data[3].indexOf("box_outline") > -1 ? false : true );
     $('#modal-usuario').modal('open');
     M.updateTextFields();
 }
