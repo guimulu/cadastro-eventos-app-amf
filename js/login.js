@@ -2,9 +2,6 @@
  * Classe onde será feita as validações de login do usuário.
  * @author Guilherme Müller
  */
-window.document.onload = function(e) {
-    console.log('e', e);  
-}
 
 
 // $(function() {
