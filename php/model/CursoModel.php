@@ -19,7 +19,7 @@
 			
 			require 'DefaultModel.php';
 			
-			$sql = "SELECT ID_CURSO, NOME, ID_SESSAO FROM CURSO WHERE EXCLUIDO = 0";
+			$sql = "SELECT ID_CURSO, NOME, EXCLUIDO, ID_SESSAO FROM CURSO";
 			 
 			$query = mysqli_query($conexao, $sql);
 
@@ -50,6 +50,7 @@
 
 			$nome = $_REQUEST['nome'];
 			$sessao = $_REQUEST['sessao'];
+			$excluido = $_REQUEST['excluido'];
 
 			define('tamanhoMaximo', (2 * 1024 * 1024));
 
@@ -71,7 +72,7 @@
 
 			$conteudo = base64_encode($foto['tmp_name']);
 
-			$sql = "INSERT INTO CURSO(NOME, LOGO, ID_SESSAO) VALUES('$nome', '$conteudo', $sessao)";
+			$sql = "INSERT INTO CURSO(NOME, LOGO, EXCLUIDO, ID_SESSAO) VALUES('$nome', '$conteudo', $excluido, $sessao)";
 
 			if($conexao->query($sql) === TRUE) {
 				return true;
@@ -119,6 +120,7 @@
 			$nome = $_REQUEST['nome'];
 			$sessao = $_REQUEST['sessao'];
 			$curso = $_REQUEST['curso'];
+			$excluido = $_REQUEST['excluido'];
 
 			define('tamanhoMaximo', (2 * 1024 * 1024));
 
@@ -138,9 +140,9 @@
 
 				$conteudo = base64_encode($foto['tmp_name']);
 
-				$sql = "UPDATE CURSO SET NOME = '$nome', LOGO = $conteudo, ID_SESSAO = $sessao WHERE ID_CURSO = $curso";
+				$sql = "UPDATE CURSO SET NOME = '$nome', LOGO = $conteudo, EXCLUIDO = $excluido, ID_SESSAO = $sessao WHERE ID_CURSO = $curso";
 			}else{
-				$sql = "UPDATE CURSO SET NOME = '$nome', ID_SESSAO = $sessao WHERE ID_CURSO = $curso";
+				$sql = "UPDATE CURSO SET NOME = '$nome', EXCLUIDO = $excluido, ID_SESSAO = $sessao WHERE ID_CURSO = $curso";
 			}
 			
 			if($conexao->query($sql) === TRUE) {
