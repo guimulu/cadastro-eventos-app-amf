@@ -2,9 +2,6 @@
  * Classe onde será feita as validações de login do usuário.
  * @author Guilherme Müller
  */
-window.document.onload = function(e) {
-    console.log('e', e);  
-}
 
 
 // $(function() {
@@ -32,7 +29,6 @@ function logar(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log(resultado);
         if (resultado.status == true) {
             $.session.set('session_login', resultado.dados.sessao);
             carregarHTML('paginaInicial.html');

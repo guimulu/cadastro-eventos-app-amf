@@ -69,7 +69,7 @@ function buscarEventos(){
     var dados = new Object();
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'buscarEventos'; 
-    console.log('dados');
+    
     $.ajax({
         url: 'php/controller/EventoController.php',
         data: dados,
@@ -77,7 +77,6 @@ function buscarEventos(){
         async: false
     }).done(function(resultado) {
         var data = resultado.dados;
-        console.log(data);
         table.clear().draw();
         $.each(data, function(index, data) {     
             //!!!--Here is the main catch------>fnAddData
@@ -124,7 +123,7 @@ function editarEvento() {
     dados.excluido = isChecked($('#excluido')) == 0 ? 1 : 0;
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'alterarUsuario';
-    console.log(dados);
+
     $.ajax({
         url: 'php/controller/UsuarioController.php',
         data: dados,
@@ -169,18 +168,17 @@ function listarTipoEventos() {
     var dados = new Object();
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'buscarTiposEventos';
-    console.log(dados);
+    
     $.ajax({
         url: 'php/controller/TipoEventoController.php',
         data: dados,
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log("caacacacacaca");
         if (resultado) {
             $('#tipoEvento').formSelect('dropdownOptions', resultado);          
         } else {
-            alert('Problemas ao buscar tipos de evento!');
+            mensagemErro(resultado.erro);
         } 
     });
 }
@@ -189,18 +187,17 @@ function listarCursos() {
     var dados = new Object();
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'buscarCursos';
-    console.log(dados);
+    
     $.ajax({
         url: 'php/controller/CursoController.php',
         data: dados,
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log("sdasdasdasd");
         if (resultado) {
             $('#curso').formSelect('dropdownOptions', resultado);          
         } else {
-            alert('Problemas ao buscar cursos!');
+            mensagemErro(resultado.erro);
         } 
     });
 }
@@ -209,18 +206,17 @@ function listarRecorrencias() {
     var dados = new Object();
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'buscarRecorrencias';
-    console.log(dados);
+    
     $.ajax({
         url: 'php/controller/EventoController.php',
         data: dados,
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log("cococococo");
         if (resultado) {
             $('#recorrencia').formSelect('dropdownOptions', resultado);          
         } else {
-            alert('Problemas ao buscar recorrências!');
+            mensagemErro(resultado.erro);
         } 
     });
 }

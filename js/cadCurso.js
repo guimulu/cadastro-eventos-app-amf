@@ -9,20 +9,25 @@ $(document).ready(function(e) {
         "lengthMenu": [5, 10, 25]
     });
     buscarCursos();
-    $('#dt-usuarios tbody').on('dblclick', 'tr', function () {
+    $('#dt-cursos tbody').on('dblclick', 'tr', function () {
         var data = table.row( this ).data();
-        //carregarDadosEditar(data);
+        carregarDadosEditar(data);
         cadastrar = false;
     } );
 
 });
 
+function novo() {
+    $('#modal-cursos').modal('open');
+    limparCamposCurso();
+    cadastrar = true;
+}
+
 function carregarDadosEditar(data) {
-    $('#usuario').val(data[0]);
+    $('#curso').val(data[0]);
     $('#nome').val(data[1]);
-    $('#email').val(data[2]);
-    $('#excluido').prop('checked', data[2].indexOf("box_outline") > -1 ? true : false);
-    $('#modal-usuario').modal('open');
+    $('#excluido').prop('checked', data[2].indexOf("box_outline") > -1 ? false : true);
+    $('#modal-cursos').modal('open');
     M.updateTextFields();
 }
 /** 
@@ -46,11 +51,42 @@ function cadastrarCurso(){
         //dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log(resultado);
-        if (resultado.status) {
+        if (resultado) {
             limparCamposCurso();
+            buscarCursos();
         } else {
-            console.log('deu pau');
+            mensagemErro(resultado.erro);
+        } 
+    });
+}
+
+/** 
+ * Método de login do usuário.
+ * @author Guilherme Müller
+ */
+function editarCurso(){
+    var dados = new FormData();
+    dados.append("curso", $('#curso').val());
+    dados.append("nome", $('#nome').val());
+    dados.append("logo", $('#logo')[0].files[0]);
+    dados.append("sessao", $.session.get('session_login'));
+    dados.append("operacao", "alterarCurso"); 
+    console.log(dados); 
+    $.ajax({
+        url: 'php/controller/CursoController.php',
+        data: dados,
+        contentType: false,
+        processData: false,
+        cache: false,
+        type: "POST",
+        //dataType: 'json',
+        async: false
+    }).done(function(resultado) {
+        if (resultado) {
+            limparCamposCurso();
+            buscarCursos();
+        } else {
+            mensagemErro(resultado.erro);
         } 
     });
 }
@@ -68,24 +104,22 @@ function buscarCursos(){
         processData: false,
         cache: false,
         type: "POST",
-        //dataType: 'json',
+        dataType: 'json',
         async: false
-    }).done(function(resultado){
-        console.log(resultado);
-        if (resultado.status) {
-            console.log(resultado);
+    }).done(function(resultado) {
+        if (resultado.dados) {
+            console.log(resultado.dados);
             var data = resultado.dados;    
             table.clear().draw();
             $.each(data, function(index, data) {     
                 $('#dt-cursos').dataTable().fnAddData( [
                     data.ID_CURSO,
                     data.NOME,
-                    data.EMAIL,
                     data.EXCLUIDO == 0 ? '<i class="material-icons">check_box</i>' : '<i class="material-icons">check_box_outline_blank</i>'
                 ] );      
             });
         } else {
-            mensagemInfo("Nenhum registro encontrado");
+            mensagemInfo(resultado.erro);
         }
     });
 }
@@ -93,4 +127,12 @@ function buscarCursos(){
 function limparCamposCurso(){
     $("#nome").val("");
     $("#logo").val("");
+}
+
+function salvar() {
+    if (cadastrar) {
+        cadastrarCurso();
+    } else {
+        editarCurso();
+    }
 }

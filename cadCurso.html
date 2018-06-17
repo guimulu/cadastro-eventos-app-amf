@@ -14,7 +14,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Nome</th>
-                        <th>Logo</th>
+                        <th>Ativo</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -25,8 +25,9 @@
         <div class="modal-content">
             <h4>Curso</h4>
             <div class="row">
+                <input id="curso" type="hidden">
                 <div class="input-field col s12">
-                    <input id="nome" type="text" class="validate">
+                    <input id="nome" maxlength ="100" type="text" class="validate">
                     <label for="nome" class="">Nome</label>
                 </div>
                 <div class="file-field input-field col s12">
@@ -37,12 +38,18 @@
                     <div class="file-path-wrapper">
                         <input id="logo" class="file-path validate" type="text" placeholder="Fazer upload da imagem">
                     </div>
+                    <div class="input-field col s12">
+                        <label>
+                            <input type="checkbox" id="excluido" />
+                            <span>Ativo</span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="cadastrarCurso();">Salvar</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="salvar();">Salvar</a>
         </div>
     </div>
 </div>
