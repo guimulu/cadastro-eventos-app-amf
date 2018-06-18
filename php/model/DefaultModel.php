@@ -13,7 +13,7 @@
     $banco = "radiske"; 
 
     $conexao = new mysqli($servidor, $usuario, $senha, $banco); 
-    
+    $conexao->set_charset("utf8");
     if ($conexao->connect_error) {
         die("Falha na conexão do banco: $conexao->connect_error");
     }

@@ -38,6 +38,7 @@ function cadastrarCurso(){
     var dados = new FormData();
     dados.append("nome", $('#nome').val());
     dados.append("logo", $('#logo')[0].files[0]);
+    dados.append("excluido", isChecked($('#excluido')) == 0 ? 1 : 0);
     dados.append("sessao", $.session.get('session_login'));
     dados.append("operacao", "cadastrarCurso"); 
     console.log(dados); 
@@ -69,6 +70,7 @@ function editarCurso(){
     dados.append("curso", $('#curso').val());
     dados.append("nome", $('#nome').val());
     dados.append("logo", $('#logo')[0].files[0]);
+    dados.append("excluido", isChecked($('#excluido')) == 0 ? 1 : 0);
     dados.append("sessao", $.session.get('session_login'));
     dados.append("operacao", "alterarCurso"); 
     console.log(dados); 
@@ -127,6 +129,8 @@ function buscarCursos(){
 function limparCamposCurso(){
     $("#nome").val("");
     $("#logo").val("");
+    $("#curso").val("");
+
 }
 
 function salvar() {

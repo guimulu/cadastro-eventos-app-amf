@@ -122,6 +122,7 @@ function limparCamposUsuario(){
     $('#nome').val('');
     $('#email').val('');
     $('#senha').val('');
+    $('#usuario').val('');
 }
 
 function salvar() {
