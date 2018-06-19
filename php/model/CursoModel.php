@@ -19,7 +19,7 @@
 			
 			require 'DefaultModel.php';
 			
-			$sql = "SELECT ID_CURSO, NOME, EXCLUIDO, ID_SESSAO FROM CURSO";
+			$sql = "SELECT ID_CURSO as ID, NOME, EXCLUIDO, ID_SESSAO FROM CURSO";
 			 
 			$query = mysqli_query($conexao, $sql);
 

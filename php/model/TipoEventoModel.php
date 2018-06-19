@@ -22,8 +22,9 @@
 			$nome = $_REQUEST['nome'];
 			$cor = $_REQUEST['cor'];
 			$sessao = $_REQUEST['sessao'];
+			$excluido = $_REQUEST['excluido'];
 
-			$sql = "INSERT INTO EVENTO_TIPO(NOME, COR, ID_SESSAO) VALUES('$nome', $cor, $sessao)";
+			$sql = "INSERT INTO EVENTO_TIPO(NOME, COR, ID_SESSAO, EXCLUIDO) VALUES('$nome', $cor, $sessao, $excluido)";
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;
@@ -43,13 +44,13 @@
 			
 			require 'DefaultModel.php';
 			
-			$sql = "SELECT * FROM EVENTO_TIPO";
+			$sql = "SELECT ID_EVENTO_TIPO as ID, NOME, COR, EXCLUIDO FROM EVENTO_TIPO";
 			 
 			$query = mysqli_query($conexao, $sql);
 
  			if (mysqli_num_rows($query) > 0 ) {
 				
-				while($dados = mysqli_fetch_assoc($query)){
+				while($dados = mysqli_fetch_object($query)){
 					$retorno[] = $dados; 
 				}    
 		
@@ -74,9 +75,10 @@
 			$eventoTipo = $_REQUEST['eventoTipo'];
 			$nome = $_REQUEST['nome'];
 			$cor = $_REQUEST['cor'];
+			$excluido = $_REQUEST['excluido'];
 			$sessao = $_REQUEST['sessao'];
 
-			$sql = "UPDATE EVENTO_TIPO SET NOME = '$nome', COR = $cor, ID_SESSAO = $sessao WHERE ID_EVENTO_TIPO = $eventoTipo";
+			$sql = "UPDATE EVENTO_TIPO SET NOME = '$nome', COR = $cor, EXCLUIDO = $excluido, ID_SESSAO = $sessao WHERE ID_EVENTO_TIPO = $eventoTipo";
 			 
 			if($conexao->query($sql) === TRUE) {
 				return true;

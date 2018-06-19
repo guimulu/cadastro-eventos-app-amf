@@ -115,7 +115,7 @@ function buscarCursos(){
             table.clear().draw();
             $.each(data, function(index, data) {     
                 $('#dt-cursos').dataTable().fnAddData( [
-                    data.ID_CURSO,
+                    data.ID,
                     data.NOME,
                     data.EXCLUIDO == 0 ? '<i class="material-icons">check_box</i>' : '<i class="material-icons">check_box_outline_blank</i>'
                 ] );      

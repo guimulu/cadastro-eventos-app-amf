@@ -1,0 +1,51 @@
+<div id="pg-cad-tipo-evento" class="pagina">
+    <link href="css/cadTipoEvento.css" rel="stylesheet">
+    <script type="text/javascript" src="js/cadTipoEvento.js"></script>
+    
+    <div class="titulo">
+        <span>Tipo Evento</span>
+        <a class="btn-floating btn-large waves-effect waves-light green" onclick="novo();">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+    <div class="tabela">
+        <table id="dt-tipo-eventos" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Cor</th>
+                        <th>Ativo</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="modal-tipo-evento" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Curso</h4>
+            <div class="row">
+                <input id="eventoTipo" type="hidden">
+                <div class="input-field col s12">
+                    <input id="nome" maxlength ="100" type="text" class="validate">
+                    <label for="nome" class="">Nome</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="cor" maxlength ="100" type="color" class="validate">
+                    <label for="cor" class="top-margin">Cor</label>
+                </div>
+                <div class="input-field col s12">
+                    <label>
+                        <input type="checkbox" id="excluido" />
+                        <span>Ativo</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="salvar();">Salvar</a>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 var cadastrar = true;
 $(document).ready(function(e) { 
     $('#modal-evento').modal();
+    $('#modal-tipo-evento').modal();
     table = $('#dt-eventos').DataTable({
         "language": {
             "url": "js/datatable-traducao.json"
@@ -14,6 +15,8 @@ $(document).ready(function(e) {
         carregarDadosEditar(data);
         cadastrar = false;
     } );
+    $('#dataInicio').mask('00/00/0000 00:00:00');
+    $('#dataFim').mask('00/00/0000 00:00:00');
     $('#curso').formSelect();
     $('#eventoTipo').formSelect();
     $('#recorrencia').formSelect();
@@ -33,6 +36,9 @@ function novo() {
  * @author Guilherme Müller
  */
 function cadastrarEvento(){
+    if (!validaData()) {
+        mensagemErro("Data inválida!");
+    }
     var dados = new Object();
     dados.nome =$('#nome').val();
     dados.descricao =$('#descricao').val();
@@ -175,8 +181,10 @@ function listarTipoEventos() {
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        if (resultado) {
-            $('#tipoEvento').formSelect('dropdownOptions', resultado);          
+        console.log("tipo evento");
+        console.log(resultado);
+        if (!resultado.erro) {
+            inserirOptionSelect($('#eventoTipo'), resultado.dados);        
         } else {
             mensagemErro(resultado.erro);
         } 
@@ -184,18 +192,23 @@ function listarTipoEventos() {
 }
 
 function listarCursos() {
-    var dados = new Object();
-    dados.sessao = $.session.get('session_login');
-    dados.operacao = 'buscarCursos';
+    var dados = new FormData()
+    dados.append("sessao", $.session.get('session_login'));
+    dados.append("operacao", "buscarCursos");
     
     $.ajax({
         url: 'php/controller/CursoController.php',
         data: dados,
+        contentType: false,
+        processData: false,
+        cache: false,
+        type: "POST",
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        if (resultado) {
-            $('#curso').formSelect('dropdownOptions', resultado);          
+        //console.log("cursos");
+        if (!resultado.erro) {
+            inserirOptionSelect($('#curso'), resultado.dados);    
         } else {
             mensagemErro(resultado.erro);
         } 
@@ -213,10 +226,31 @@ function listarRecorrencias() {
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        if (resultado) {
-            $('#recorrencia').formSelect('dropdownOptions', resultado);          
+        console.log("recorrencia");
+        console.log(resultado);
+        if (!resultado.erro) {
+            inserirOptionSelect($('#recorrencia'), resultado.dados);         
         } else {
             mensagemErro(resultado.erro);
         } 
     });
+}
+
+
+function inserirOptionSelect(elemento, objeto) {
+    $.each(objeto, function(index, val) {
+        var $newOpt = $("<option>").attr("value",val.ID).text(val.NOME);
+        elemento.append($newOpt);
+    });
+    elemento.formSelect();
+}
+
+function novoTipoEvento() {
+    $('#modal-tipo-evento').modal('open'); 
+}
+
+function validaData() {
+    return moment($('#dataInicio').val(),"DD/MM/YYYY HH:mm:ss").isValid() 
+    && moment($('#dataFim').val(),"DD/MM/YYYY HH:mm:ss").isValid() 
+    && $('#dataInicio').val() < $('#dataFim').val();    
 }

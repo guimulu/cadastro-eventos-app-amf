@@ -35,7 +35,7 @@
             <div class="row">
                 <input id="evento" type="hidden">
                 <div class="input-field col s12">
-                    <input id="nome" type="text" class="validate" maxlength="200">
+                    <input id="nome" type="text" class="validate" maxlength="150">
                     <label for="nome" class="">Nome</label>
                 </div>
                 <div class="input-field col s12">
@@ -43,7 +43,7 @@
                     <label for="descricao" class="">Descrição</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="localizacao" type="text" class="validate" maxlength="100">
+                    <input id="localizacao" type="text" class="validate" maxlength="250">
                     <label for="localizacao" class="">Localização</label>
                 </div>
                 <div class="input-field col s12">
@@ -58,26 +58,26 @@
                     <input id="lembrete" type="text" class="validate" maxlength="100">
                     <label for="lembrete" class="">Lembrete</label>
                 </div>
-                <div class="input-field col s12">
+                <div class="input-field col s12 checkbox-margin">
                     <label>
                         <input type="checkbox" id="excluido" />
                         <span>Ativo</span>
                     </label>
                 </div>
                 <div class="input-field col s12">
-                    <select id="eventoTipo" class="validate">
+                    <select id="eventoTipo" class="validate material-select">
                         <option value="" disabled selected>Escolha um Tipo de Evento</option>
                     </select>
                     <label for="eventoTipo" class="">Tipo Evento</label>
                 </div>
                 <div class="input-field col s12">
-                    <select id="curso" class="validate">
+                    <select id="curso" class="validate material-select">
                         <option value="" disabled selected>Escolha um Curso</option>
                     </select>
                     <label for="curso" class="">Curso</label>
                 </div>
                 <div class="input-field col s12">
-                    <select id="recorrencia" class="validate">
+                    <select id="recorrencia" class="validate material-select">
                         <option value="" disabled selected>Escolha uma recorrência</option>
                     </select>
                     <label for="recorrencia" class="">Recorrência</label>
@@ -89,4 +89,27 @@
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="salvar();">Salvar</a>
         </div>
     </div>
+
+
+    <div id="modal-tipo-evento" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Tipo Evento</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="nome-tipo-evento" type="text" class="validate" maxlength="100">
+                    <label for="nome-tipo-evento" class="">Nome</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="cor" type="text" class="validate" maxlength="10">
+                    <label for="cor" class="">Cor</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="salvarTipoEvento();">Salvar</a>
+        </div>
+    </div>
+
+
 </div>

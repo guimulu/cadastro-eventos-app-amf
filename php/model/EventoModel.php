@@ -19,7 +19,7 @@
 			
 			require 'DefaultModel.php';
 			
-			$sql = "SELECT * FROM RECORRENCIA";
+			$sql = "SELECT ID_RECORRENCIA as ID, DESCRICAO as NOME FROM RECORRENCIA";
 			 
 			$query = mysqli_query($conexao, $sql);
 
