@@ -9,7 +9,7 @@ $(document).ready(function(e) {
         "pageLength": 5,
         "lengthMenu": [5, 10, 25]
     });
-   // buscarEventos();
+    buscarEventos();
     $('#dt-eventos tbody').on('dblclick', 'tr', function () {
         var data = table.row( this ).data();
         carregarDadosEditar(data);
@@ -82,26 +82,30 @@ function buscarEventos(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        var data = resultado.dados;
-        table.clear().draw();
-        $.each(data, function(index, data) {     
-            //!!!--Here is the main catch------>fnAddData
-            $('#dt-eventos').dataTable().fnAddData( [
-                data.ID_USUARIO,
-                data.NOME,
-                data.DESCRICAO,
-                data.LOCALIZACAO,
-                data.DATA_HORA_INICIO,
-                data.DATA_HORA_TERMINO,
-                data.LEMBRETE,
-                data.EXCLUIDO == 0 ? '<i class="material-icons">check_box</i>' : '<i class="material-icons">check_box_outline_blank</i>',
-                data.ID_TIPO_EVENTO,
-                data.ID_CURSO,
-                data.ID_RECORRENCIA
-            ] );      
-        });
+        if (!resultado.erro) {
+            var data = resultado.dados;
+            table.clear().draw();
+    
+            $.each(data, function(index, data) {     
+                //!!!--Here is the main catch------>fnAddData
+                $('#dt-eventos').dataTable().fnAddData( [
+                    data.ID_EVENTO,
+                    data.NOME,
+                    data.DESCRICAO,
+                    data.LOCALIZACAO,
+                    data.DATA_HORA_INICIO,
+                    data.DATA_HORA_TERMINO,
+                    data.LEMBRETE,
+                    data.EXCLUIDO == 0 ? '<i class="material-icons">check_box</i>' : '<i class="material-icons">check_box_outline_blank</i>',
+                    data.ID_EVENTO_TIPO,
+                    data.ID_CURSO,
+                    data.ID_RECORRENCIA
+                ] );      
+            });
+        } else {
+            mensagemErro(resultado.erro);
+        }
     });
-    $("#dt-eventos_filter > label > input").attr("placeholder", "Pesquisar");    
 }
 
 function carregarDadosEditar(data) {
@@ -181,8 +185,6 @@ function listarTipoEventos() {
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log("tipo evento");
-        console.log(resultado);
         if (!resultado.erro) {
             inserirOptionSelect($('#eventoTipo'), resultado.dados);        
         } else {
@@ -206,7 +208,6 @@ function listarCursos() {
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        //console.log("cursos");
         if (!resultado.erro) {
             inserirOptionSelect($('#curso'), resultado.dados);    
         } else {
@@ -226,8 +227,6 @@ function listarRecorrencias() {
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log("recorrencia");
-        console.log(resultado);
         if (!resultado.erro) {
             inserirOptionSelect($('#recorrencia'), resultado.dados);         
         } else {

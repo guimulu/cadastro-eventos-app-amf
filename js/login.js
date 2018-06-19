@@ -30,6 +30,7 @@ function logar(){
         async: false
     }).done(function(resultado) {
         if (resultado.status == true) {
+            $.session.set('usuario_logado',resultado.dados.ID_USUARIO);
             $.session.set('session_login', resultado.dados.sessao);
             carregarHTML('paginaInicial.html');
         } else {

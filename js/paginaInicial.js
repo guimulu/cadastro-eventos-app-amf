@@ -16,6 +16,7 @@ $(document).ready(function(e) {
             $(".lista-collapse:nth-child(3)").addClass('botao-lista-baixo');
         }
     });
+    buscarPermissoes();
 });
 
 var fecharMenu = function() {
@@ -25,3 +26,35 @@ var fecharMenu = function() {
         $(".lista-collapse:nth-child(2)").removeClass('hidden');
         $(".lista-collapse:nth-child(3)").removeClass('botao-lista-baixo');
 };
+
+function buscarPermissoes() {
+    var dados = new Object();
+    dados.usuario = $.session.get('usuario_logado');
+    dados.operacao = 'buscarPermissoesDoUsuario'; 
+    console.log(dados);
+    $.ajax({
+        url: 'php/controller/PermissaoController.php',
+        data: dados,
+        dataType: 'json',
+        async: false
+    }).done(function(resultado) {
+        if (!resultado.erro) {
+            var data = resultado.dados;
+            $.each(data, function(index, data) {
+                if (data.ID_PERMISSAO === "1") {
+                    $("#menu-topo").append('<li><a onclick="carregarHTMLPaginaInicial(\'cadUsuario.html\'); fecharMenu();">USUÁRIOS</a></li>');
+                } else if (data.ID_PERMISSAO === "2") {
+                    $("#menu-topo").append('<li><a onclick="carregarHTMLPaginaInicial(\'cadCurso.html\'); fecharMenu();">CURSO</a></li>');
+                } else if (data.ID_PERMISSAO === "3") {
+                    $("#menu-topo").append('<li><a onclick="carregarHTMLPaginaInicial(\'cadEvento.html\'); fecharMenu();">EVENTOS</a></li>');
+                } else if (data.ID_PERMISSAO === "4") {
+                    $("#menu-topo").append('<li><a onclick="carregarHTMLPaginaInicial(\'cadTipoEvento.html\'); fecharMenu();">TIPO EVENTO</a></li>');
+                }
+            });
+            $("#menu-topo").append('<li><a href="./index.html" onclick="encerrarSessao();">SAIR</a></li>');
+        } else {
+            mensagemErro("Falha ao buscar permissões do usuário!");
+            $("#menu-topo").append('<li><a href="./index.html" onclick="encerrarSessao();">SAIR</a></li>');
+        }
+    });
+}
