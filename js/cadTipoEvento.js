@@ -11,7 +11,6 @@ $(document).ready(function(e) {
     buscarTipoEvento();
     $('#dt-tipo-eventos tbody').on('dblclick', 'tr', function () {
         var data = table.row( this ).data();
-        console.log(data);
         carregarDadosEditar(data);
         cadastrar = false;
     } );
@@ -43,7 +42,7 @@ function cadastrarTipoEvento(){
     dados.excluido = isChecked($('#excluido')) == 0 ? 1 : 0;
     dados.sessao = $.session.get('session_login');
     dados.operacao = "cadastrarTipoEvento"; 
-    console.log(dados); 
+    
     $.ajax({
         url: 'php/controller/TipoEventoController.php',
         data: dados,
@@ -71,7 +70,7 @@ function editarTipoEvento(){
     dados.excluido = isChecked($('#excluido')) == 0 ? 1 : 0;
     dados.sessao = $.session.get('session_login');
     dados.operacao = "alterarTipoEvento"; 
-    console.log(dados); 
+    
     $.ajax({
         url: 'php/controller/TipoEventoController.php',
         data: dados,
@@ -91,7 +90,6 @@ function buscarTipoEvento(){
     var dados = new Object()
     dados.sessao = $.session.get('session_login');
     dados.operacao = "buscarTiposEventos";
-    console.log(dados); 
 
     $.ajax({
         url: 'php/controller/TipoEventoController.php',
@@ -100,7 +98,6 @@ function buscarTipoEvento(){
         async: false
     }).done(function(resultado) {
         if (resultado.dados) {
-            console.log(resultado.dados);
             var data = resultado.dados;    
             table.clear().draw();
             $.each(data, function(index, data) {     

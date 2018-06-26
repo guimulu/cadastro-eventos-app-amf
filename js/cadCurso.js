@@ -41,7 +41,7 @@ function cadastrarCurso(){
     dados.append("excluido", isChecked($('#excluido')) == 0 ? 1 : 0);
     dados.append("sessao", $.session.get('session_login'));
     dados.append("operacao", "cadastrarCurso"); 
-    console.log(dados); 
+    
     $.ajax({
         url: 'php/controller/CursoController.php',
         data: dados,
@@ -73,7 +73,7 @@ function editarCurso(){
     dados.append("excluido", isChecked($('#excluido')) == 0 ? 1 : 0);
     dados.append("sessao", $.session.get('session_login'));
     dados.append("operacao", "alterarCurso"); 
-    console.log(dados); 
+    
     $.ajax({
         url: 'php/controller/CursoController.php',
         data: dados,
@@ -97,7 +97,6 @@ function buscarCursos(){
     var dados = new FormData()
     dados.append("sessao", $.session.get('session_login'));
     dados.append("operacao", "buscarCursos"); 
-    console.log(dados); 
 
     $.ajax({
         url: 'php/controller/CursoController.php',

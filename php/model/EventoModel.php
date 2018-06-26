@@ -65,7 +65,7 @@
 			if ($conexao->query($sql) === TRUE) {
 				$eventoOrigem = $conexao->insert_id;
 
-				$dataInicio = date('d/m/Y H:i:s', strtotime('+1 days', strtotime($dataInicio) > $dataFim ));
+				$dataInicio = date('Y-m-d H:i:s', strtotime('+1 days', strtotime($dataInicio) > $dataFim ));
 
 				while($dataInicio > $dataFim) {
 					
@@ -118,7 +118,7 @@
 			
 			require 'DefaultModel.php';
 			
-			$sql = "SELECT * FROM EVENTO E INNER JOIN EVENTO_TIPO ET ON E.ID_EVENTO_TIPO = ET.ID_EVENTO_TIPO INNER JOIN CURSO C ON C.ID_CURSO = E.ID_CURSO INNER JOIN RECORRENCIA R ON R.ID_RECORRENCIA = E.ID_RECORRENCIA";
+			$sql = "SELECT E.ID_EVENTO, E.NOME, E.DESCRICAO, E.LOCALIZACAO, E.DATA_HORA_INICIO, E.DATA_HORA_TERMINO, E.LEMBRETE, E.EXCLUIDO, ET.NOME AS NOMEEVENTOTIPO, C.NOME AS NOMECURSO, R.DESCRICAO AS NOMERECORRENCIA FROM EVENTO E INNER JOIN EVENTO_TIPO ET ON E.ID_EVENTO_TIPO = ET.ID_EVENTO_TIPO INNER JOIN CURSO C ON C.ID_CURSO = E.ID_CURSO INNER JOIN RECORRENCIA R ON R.ID_RECORRENCIA = E.ID_RECORRENCIA";
 			
 			$query = mysqli_query($conexao, $sql);
 
@@ -157,11 +157,10 @@
 			$eventoTipo = $_REQUEST['eventoTipo'];
 			$curso = $_REQUEST['curso'];
 			$recorrencia = $_REQUEST['recorrencia'];
-			$eventoOrigem = $_REQUEST['eventoOrigem'];
 			$sessao = $_REQUEST['sessao'];
 
-			$sql = "UPDATE EVENTO SET NOME = '$nome', DESCRICAO = '$descricao', LOCALIZACAO = '$localizacao', DATA_HORA_INICIO = '$dataInicio', DATA_HORA_TERMINO = '$dataFim', LEMBRETE = $lembrete, ATIVO = $ativo, ID_EVENTO_TIPO = $eventoTipo, ID_CURSO = $curso, ID_SESSAO = $sessao, ID_RECORRENCIA = $recorrencia, ID_EVENTO_ORIGEM = $eventoOrigem WHERE ID_EVENTO = $evento";
-			 
+			$sql = "UPDATE EVENTO SET NOME = '$nome', DESCRICAO = '$descricao', LOCALIZACAO = '$localizacao', DATA_HORA_INICIO = '$dataInicio', DATA_HORA_TERMINO = '$dataFim', LEMBRETE = $lembrete, ATIVO = $ativo, ID_EVENTO_TIPO = $eventoTipo, ID_CURSO = $curso, ID_SESSAO = $sessao, ID_RECORRENCIA = $recorrencia WHERE ID_EVENTO = $evento";
+			
 			if($conexao->query($sql) === TRUE) {
 				return true;
 		  	}else{

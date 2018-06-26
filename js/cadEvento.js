@@ -81,12 +81,10 @@ function buscarEventos(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log(resultado);
         if (!resultado.erro) {
             var data = resultado.dados;
             table.clear().draw();
             $.each(data, function(index, data) {     
-                //!!!--Here is the main catch------>fnAddData
                 $('#dt-eventos').dataTable().fnAddData( [
                     data.ID_EVENTO,
                     data.NOME,
@@ -96,9 +94,9 @@ function buscarEventos(){
                     data.DATA_HORA_TERMINO,
                     data.LEMBRETE,
                     data.EXCLUIDO == 0 ? '<i class="material-icons">check_box</i>' : '<i class="material-icons">check_box_outline_blank</i>',
-                    data.ID_EVENTO_TIPO,
-                    data.ID_CURSO,
-                    data.ID_RECORRENCIA
+                    data.NOMEEVENTOTIPO,
+                    data.NOMECURSO,
+                    data.NOMERECORRENCIA
                 ] );      
             });
         } else {
@@ -108,33 +106,41 @@ function buscarEventos(){
 }
 
 function carregarDadosEditar(data) {
-    $('#nome').val(data[0]);
-    $('#descricao').val(data[1]);
-    $('#localizacao').val(data[2]);
-    $('#dataInicio').val(data[3]);
-    $('#dataFim').val(data[4]);
-    $('#lembrete').val(data[5]);
-    $('#ativo').val(data[6]);
-    $('#eventoTipo').val(data[7]);
-    $('#curso').val(data[8]);
-    $('#recorrencia').val(data[9]);
-    $('#eventoOrigem').val(data[10]);
-    $('#modal-usuario').modal('open');
+    $('#evento').val(data[0]);
+    $('#nome').val(data[1]);
+    $('#descricao').val(data[2]);
+    $('#localizacao').val(data[3]);
+    $('#dataInicio').val(data[4]);
+    $('#dataFim').val(data[5]);
+    $('#lembrete').val(data[6]);
+    $('#ativo').val(data[7]);
+    $('#eventoTipo').val(data[8]);
+    $('#curso').val(data[9]);
+    $('#recorrencia').val(data[10]);
+    $('#eventoOrigem').val(data[11]);
+    $('#modal-evento').modal('open');
     M.updateTextFields();
 }
 
 function editarEvento() {
+
     var dados = new Object();
+    dados.evento = $('#evento').val();
     dados.nome = $('#nome').val();
-    dados.email = $('#email').val();
-    dados.senha = $('#senha').val();
-    dados.usuario = $('#usuario').val();
-    dados.excluido = isChecked($('#excluido')) == 0 ? 1 : 0;
+    dados.descricao = $('#descricao').val();
+    dados.localizacao = $('#localizacao').val();
+    dados.dataInicio = $('#dataInicio').val();
+    dados.dataFim = $('#dataFim').val();
+    dados.lembrete = $('#lembrete').val();
+    dados.ativo = isChecked($('#ativo')) == 0 ? 1 : 0;
+    dados.eventoTipo = $('#eventoTipo').val();
+    dados.curso = $('#curso').val();
+    dados.recorrencia = $('#recorrencia').val();
     dados.sessao = $.session.get('session_login');
-    dados.operacao = 'alterarUsuario';
+    dados.operacao = 'alterarEvento';
 
     $.ajax({
-        url: 'php/controller/UsuarioController.php',
+        url: 'php/controller/EventoController.php',
         data: dados,
         dataType: 'json',
         async: false
