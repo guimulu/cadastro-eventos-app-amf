@@ -53,6 +53,7 @@
 			$localizacao = $_REQUEST['localizacao'];
 			$dataInicio = $_REQUEST['dataInicio'];
 			$dataFim = $_REQUEST['dataFim'];
+			$dataFim = '2011-12-18 13:17:17';
 			$lembrete = $_REQUEST['lembrete'];
 			$ativo = $_REQUEST['ativo'];
 			$eventoTipo = $_REQUEST['eventoTipo'];
@@ -65,7 +66,7 @@
 			if ($conexao->query($sql) === TRUE) {
 				$eventoOrigem = $conexao->insert_id;
 
-				$dataInicio = date('d/m/Y H:i:s', strtotime('+1 days', strtotime($dataInicio) > $dataFim ));
+				$dataInicio = date('Y-m-d H:i:s', strtotime('+1 days', strtotime($dataInicio) > $dataFim ));
 
 				while($dataInicio > $dataFim) {
 					
@@ -157,11 +158,10 @@
 			$eventoTipo = $_REQUEST['eventoTipo'];
 			$curso = $_REQUEST['curso'];
 			$recorrencia = $_REQUEST['recorrencia'];
-			$eventoOrigem = $_REQUEST['eventoOrigem'];
 			$sessao = $_REQUEST['sessao'];
 
-			$sql = "UPDATE EVENTO SET NOME = '$nome', DESCRICAO = '$descricao', LOCALIZACAO = '$localizacao', DATA_HORA_INICIO = '$dataInicio', DATA_HORA_TERMINO = '$dataFim', LEMBRETE = $lembrete, ATIVO = $ativo, ID_EVENTO_TIPO = $eventoTipo, ID_CURSO = $curso, ID_SESSAO = $sessao, ID_RECORRENCIA = $recorrencia, ID_EVENTO_ORIGEM = $eventoOrigem WHERE ID_EVENTO = $evento";
-			 
+			$sql = "UPDATE EVENTO SET NOME = '$nome', DESCRICAO = '$descricao', LOCALIZACAO = '$localizacao', DATA_HORA_INICIO = '$dataInicio', DATA_HORA_TERMINO = '$dataFim', LEMBRETE = $lembrete, ATIVO = $ativo, ID_EVENTO_TIPO = $eventoTipo, ID_CURSO = $curso, ID_SESSAO = $sessao, ID_RECORRENCIA = $recorrencia WHERE ID_EVENTO = $evento";
+
 			if($conexao->query($sql) === TRUE) {
 				return true;
 		  	}else{
