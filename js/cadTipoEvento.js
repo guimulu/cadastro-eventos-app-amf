@@ -78,7 +78,7 @@ function editarTipoEvento(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        if (!resultado) {
+        if (!resultado.erro) {
             limparCamposTipoEvento();
             buscarTipoEvento();
         } else {
