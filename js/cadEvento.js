@@ -42,9 +42,9 @@ function cadastrarEvento(){
     var dados = new Object();
     dados.nome =$('#nome').val();
     dados.descricao =$('#descricao').val();
-    dados.localizacao =$('#localizacao').val();
-    dados.dataInicio =$('#dataInicio').val();
-    dados.dataFim =$('#dataFim').val();
+    dados.localizacao = $('#localizacao').val();
+    dados.dataInicio = moment($('#dataInicio').val()).format('YYYY-MM-DD hh:mm:ss');
+    dados.dataFim = moment($('#dataFim').val()).format('YYYY-MM-DD hh:mm:ss');
     dados.lembrete =$('#lembrete').val();
     dados.ativo = isChecked($('#ativo')) == 0 ? 1 : 0;
     dados.eventoTipo =$('#eventoTipo').val();
@@ -90,8 +90,8 @@ function buscarEventos(){
                     data.NOME,
                     data.DESCRICAO,
                     data.LOCALIZACAO,
-                    data.DATA_HORA_INICIO,
-                    data.DATA_HORA_TERMINO,
+                    moment(data.DATA_HORA_INICIO).format('DD/MM/YYYY hh:mm:ss'),
+                    moment(data.DATA_HORA_TERMINO).format('DD/MM/YYYY hh:mm:ss'),
                     data.LEMBRETE,
                     data.EXCLUIDO == 0 ? '<i class="material-icons">check_box</i>' : '<i class="material-icons">check_box_outline_blank</i>',
                     data.NOMEEVENTOTIPO,
@@ -129,8 +129,8 @@ function editarEvento() {
     dados.nome = $('#nome').val();
     dados.descricao = $('#descricao').val();
     dados.localizacao = $('#localizacao').val();
-    dados.dataInicio = $('#dataInicio').val();
-    dados.dataFim = $('#dataFim').val();
+    dados.dataInicio = moment($('#dataInicio').val()).format('YYYY-MM-DD hh:mm:ss');
+    dados.dataFim = moment($('#dataFim').val()).format('YYYY-MM-DD hh:mm:ss');
     dados.lembrete = $('#lembrete').val();
     dados.ativo = isChecked($('#ativo')) == 0 ? 1 : 0;
     dados.eventoTipo = $('#eventoTipo').val();
@@ -138,7 +138,6 @@ function editarEvento() {
     dados.recorrencia = $('#recorrencia').val();
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'alterarEvento';
-
     $.ajax({
         url: 'php/controller/EventoController.php',
         data: dados,

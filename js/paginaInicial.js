@@ -39,7 +39,6 @@ function buscarPermissoes() {
     }).done(function(resultado) {
         if (!resultado.erro) {
             var data = resultado.dados;
-            console.log(resultado.dados);
             $.each(data, function(index, data) {
                 if (data.ID_PERMISSAO === "1") {
                     $("#menu-topo").append('<li><a onclick="carregarHTMLPaginaInicial(\'cadUsuario.html\'); fecharMenu();">USUÁRIOS</a></li>');

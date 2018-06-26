@@ -109,7 +109,6 @@ function buscarCursos(){
         async: false
     }).done(function(resultado) {
         if (resultado.dados) {
-            console.log(resultado.dados);
             var data = resultado.dados;    
             table.clear().draw();
             $.each(data, function(index, data) {     
