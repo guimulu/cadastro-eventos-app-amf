@@ -53,7 +53,6 @@
 			$localizacao = $_REQUEST['localizacao'];
 			$dataInicio = $_REQUEST['dataInicio'];
 			$dataFim = $_REQUEST['dataFim'];
-			$dataFim = '2011-12-18 13:17:17';
 			$lembrete = $_REQUEST['lembrete'];
 			$ativo = $_REQUEST['ativo'];
 			$eventoTipo = $_REQUEST['eventoTipo'];
@@ -161,7 +160,7 @@
 			$sessao = $_REQUEST['sessao'];
 
 			$sql = "UPDATE EVENTO SET NOME = '$nome', DESCRICAO = '$descricao', LOCALIZACAO = '$localizacao', DATA_HORA_INICIO = '$dataInicio', DATA_HORA_TERMINO = '$dataFim', LEMBRETE = $lembrete, ATIVO = $ativo, ID_EVENTO_TIPO = $eventoTipo, ID_CURSO = $curso, ID_SESSAO = $sessao, ID_RECORRENCIA = $recorrencia WHERE ID_EVENTO = $evento";
-
+			
 			if($conexao->query($sql) === TRUE) {
 				return true;
 		  	}else{
