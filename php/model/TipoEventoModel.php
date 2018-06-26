@@ -79,7 +79,7 @@
 			$sessao = $_REQUEST['sessao'];
 
 			$sql = "UPDATE EVENTO_TIPO SET NOME = '$nome', COR = $cor, EXCLUIDO = $excluido, ID_SESSAO = $sessao WHERE ID_EVENTO_TIPO = $eventoTipo";
-			 
+			
 			if($conexao->query($sql) === TRUE) {
 				return true;
 		  	}else{
