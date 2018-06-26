@@ -51,7 +51,7 @@ function cadastrarEvento(){
     dados.curso =$('#curso').val();
     dados.recorrencia =$('#recorrencia').val();
     dados.sessao = $.session.get('session_login');
-    dados.operacao = 'cadastrarEvento';  
+    dados.operacao = 'cadastrarEvento';
     $.ajax({
         url: 'php/controller/EventoController.php',
         data: dados,

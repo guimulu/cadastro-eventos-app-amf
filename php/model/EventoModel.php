@@ -58,14 +58,25 @@
 			$eventoTipo = $_REQUEST['eventoTipo'];
 			$curso = $_REQUEST['curso'];
 			$recorrencia = $_REQUEST['recorrencia'];
-			$eventoOrigem = $_REQUEST['eventoOrigem'];
 			$sessao = $_REQUEST['sessao'];
 			
-			$sql = "INSERT INTO EVENTO(NOME, DESCRICAO, LOCALIZACAO, DATA_HORA_INICIO, DATA_HORA_TERMINO, LEMBRETE, ATIVO, ID_EVENTO_TIPO, ID_CURSO, ID_EVENTO_ORIGEM, ID_RECORRENCIA, ID_SESSAO) VALUES('$nome', '$descricao', '$localizacao', '$dataInicio', '$dataFim', $lembrete, $eventoTipo, $curso, $recorrencia, $eventoOrigem, $sessao)";
-			 
-			if($conexao->query($sql) === TRUE) {
+			$sql = "INSERT INTO EVENTO(NOME, DESCRICAO, LOCALIZACAO, DATA_HORA_INICIO, DATA_HORA_TERMINO, ATIVO, LEMBRETE, ID_EVENTO_TIPO, ID_CURSO, ID_RECORRENCIA, ID_SESSAO) VALUES('$nome', '$descricao', '$localizacao', '$dataInicio', '$dataFim', $ativo, '$lembrete', $eventoTipo, $curso, $recorrencia, $sessao)";
+
+			if ($conexao->query($sql) === TRUE) {
+				$eventoOrigem = $conexao->insert_id;
+
+				$dataInicio = date('d/m/Y H:i:s', strtotime('+1 days', strtotime($dataInicio) > $dataFim ));
+
+				while($dataInicio > $dataFim) {
+					
+					$sql = "INSERT INTO EVENTO(NOME, DESCRICAO, LOCALIZACAO, DATA_HORA_INICIO, DATA_HORA_TERMINO, ATIVO, LEMBRETE, ID_EVENTO_TIPO, ID_CURSO, ID_RECORRENCIA, ID_SESSAO, ID_EVENTO_ORIGEM) VALUES('$nome', '$descricao', '$localizacao', '$dataInicio', '$dataFim', $ativo, '$lembrete', $eventoTipo, $curso, $recorrencia, $sessao, $eventoOrigem)";
+					
+					if ($conexao->query($sql) === FALSE) {
+						return false;
+					}
+				}
 				return true;
-		  	}else{
+		  	} else {
 				return false;
 		  	}
 			
