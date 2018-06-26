@@ -75,17 +75,16 @@ function buscarEventos(){
     var dados = new Object();
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'buscarEventos'; 
-    
     $.ajax({
         url: 'php/controller/EventoController.php',
         data: dados,
         dataType: 'json',
         async: false
     }).done(function(resultado) {
+        console.log(resultado);
         if (!resultado.erro) {
             var data = resultado.dados;
             table.clear().draw();
-    
             $.each(data, function(index, data) {     
                 //!!!--Here is the main catch------>fnAddData
                 $('#dt-eventos').dataTable().fnAddData( [

@@ -26,19 +26,40 @@
         case 'buscarUsuarios':
             buscarUsuarios($usuarioModel);
             break;
+        case 'buscarUsuariosAtivos':
+            buscarUsuariosAtivos($usuarioModel);
+            break;
         default:
             echo "Nenhuma operação encontrada!";
             break;
     }
     
     /** 
-    * Função destinada para a busca dos cursos
+    * Função destinada para a busca dos usuarios
     * @access public 
     * @param $usuarioModel 
     * @return json 
     */ 
     function buscarUsuarios($usuarioModel) {
         $resultado = $usuarioModel->buscarUsuarios();
+        
+        if(!empty($resultado)){
+           $retorno['dados'] = $resultado; 
+        }else{
+            $retorno['erro'] = 'Nenhum dado encontrado';
+        }
+
+        echo json_encode($retorno);
+    }
+
+     /** 
+    * Função destinada para a busca dos usuarios ativos
+    * @access public 
+    * @param $usuarioModel 
+    * @return json 
+    */ 
+    function buscarUsuariosAtivos($usuarioModel) {
+        $resultado = $usuarioModel->buscarUsuariosAtivos();
         
         if(!empty($resultado)){
            $retorno['dados'] = $resultado; 

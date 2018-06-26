@@ -63,6 +63,34 @@
 		}
 
 		/** 
+    	* Função para buscar os usuarios
+    	* @access public 
+		* @return array
+		* @return null
+    	*/ 
+		public function buscarUsuariosAtivos() {
+			
+			require 'DefaultModel.php';
+			
+			$sql = "SELECT ID_USUARIO, NOME, EMAIL, EXCLUIDO FROM USUARIO WHERE EXCLUIDO = 0";
+			 
+			$query = mysqli_query($conexao, $sql);
+
+ 			if (mysqli_num_rows($query) > 0 ) {
+				
+				while($dados = mysqli_fetch_object($query)){
+					$retorno[] = $dados; 
+				}    
+		
+				return $retorno;
+
+			} else {
+				return null;
+			}
+
+		}
+
+		/** 
     	* Função para alterar o usuário
     	* @access public 
     	* @param $usuario, $nome, $email, $senha, $sessao

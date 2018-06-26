@@ -31,7 +31,6 @@ function buscarPermissoes() {
     var dados = new Object();
     dados.usuario = $.session.get('usuario_logado');
     dados.operacao = 'buscarPermissoesDoUsuario'; 
-    console.log(dados);
     $.ajax({
         url: 'php/controller/PermissaoController.php',
         data: dados,
@@ -40,6 +39,7 @@ function buscarPermissoes() {
     }).done(function(resultado) {
         if (!resultado.erro) {
             var data = resultado.dados;
+            console.log(resultado.dados);
             $.each(data, function(index, data) {
                 if (data.ID_PERMISSAO === "1") {
                     $("#menu-topo").append('<li><a onclick="carregarHTMLPaginaInicial(\'cadUsuario.html\'); fecharMenu();">USUÁRIOS</a></li>');
@@ -49,6 +49,8 @@ function buscarPermissoes() {
                     $("#menu-topo").append('<li><a onclick="carregarHTMLPaginaInicial(\'cadEvento.html\'); fecharMenu();">EVENTOS</a></li>');
                 } else if (data.ID_PERMISSAO === "4") {
                     $("#menu-topo").append('<li><a onclick="carregarHTMLPaginaInicial(\'cadTipoEvento.html\'); fecharMenu();">TIPO EVENTO</a></li>');
+                } else if (data.ID_PERMISSAO === "5") {
+                    $("#menu-topo").append('<li><a onclick="carregarHTMLPaginaInicial(\'cadPermissao.html\'); fecharMenu();">PERMISSÕES</a></li>');
                 }
             });
             $("#menu-topo").append('<li><a href="./index.html" onclick="encerrarSessao();">SAIR</a></li>');

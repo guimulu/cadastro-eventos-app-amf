@@ -1,0 +1,89 @@
+<div id="pg-cad-permissao" class="pagina">
+    <link  href="css/cadPermissao.css" rel="stylesheet">
+    <script type="text/javascript" src="js/cadPermissao.js"></script>
+    
+    <div class="titulo">
+        <span>Permissões</span>
+    </div>
+    <div class="tabela">
+        <table id="dt-permissoes" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Ativo</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="modal-permissao" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4 id="titulo-modal"></h4>
+            <div class="row">
+                <input id="permissao" type="hidden">
+                <div>
+                    <span>Tela de Usuários</span><br>
+                    <label>
+                        <input name="usuario" id="usuarioSim" type="radio" value="1" />
+                        <span>Sim</span>
+                    </label>
+                    <label>
+                        <input name="usuario" id="usuarioNao" type="radio" value="0" />
+                        <span>Não</span>
+                    </label>
+                </div><br>
+                <div>
+                    <span>Tela de Cursos</span><br>
+                    <label>
+                        <input name="curso" id="cursoSim" type="radio" value="1" />
+                        <span>Sim</span>
+                    </label>
+                    <label>
+                        <input name="curso" id="cursoNao" type="radio" value="0" />
+                        <span>Não</span>
+                    </label>
+                </div><br>
+                <div>
+                    <span>Tela de Eventos</span><br>
+                    <label>
+                        <input name="evento" id="eventoSim" type="radio" value="1" />
+                        <span>Sim</span>
+                    </label>
+                    <label>
+                        <input name="evento" id="eventoNao" type="radio" value="0" />
+                        <span>Não</span>
+                    </label>
+                </div><br>
+                <div>
+                    <span>Tela de Tipo Evento</span><br>
+                    <label>
+                        <input name="tipoEvento" id="tipoEventoSim" type="radio" value="1" />
+                        <span>Sim</span>
+                    </label>
+                    <label>
+                        <input name="tipoEvento" id="tipoEventoNao" type="radio" value="0" />
+                        <span>Não</span>
+                    </label>
+                </div><br>
+                <div>
+                    <span>Tela de Permissões</span><br>
+                    <label>
+                        <input name="permissoes" id="permissoesSim" type="radio" value="1" />
+                        <span>Sim</span>
+                    </label>
+                    <label>
+                        <input name="permissoes" id="permissoesNao" type="radio" value="0" />
+                        <span>Não</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="salvar();">Salvar</a>
+        </div>
+    </div>
+</div>
