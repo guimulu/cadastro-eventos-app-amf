@@ -23,7 +23,7 @@
         <div class="modal-content">
             <h4 id="titulo-modal"></h4>
             <div class="row">
-                <input id="permissao" type="hidden">
+                <input id="usuario" type="hidden">
                 <div>
                     <span>Tela de Usuários</span><br>
                     <label>
@@ -31,51 +31,51 @@
                         <span>Sim</span>
                     </label>
                     <label>
-                        <input name="usuario" id="usuarioNao" type="radio" value="0" />
+                        <input name="usuario" id="usuarioNao" class="nao" type="radio" value="1" />
                         <span>Não</span>
                     </label>
                 </div><br>
                 <div>
                     <span>Tela de Cursos</span><br>
                     <label>
-                        <input name="curso" id="cursoSim" type="radio" value="1" />
+                        <input name="curso" id="cursoSim" type="radio" value="2" />
                         <span>Sim</span>
                     </label>
                     <label>
-                        <input name="curso" id="cursoNao" type="radio" value="0" />
+                        <input name="curso" id="cursoNao" class="nao" type="radio" value="2" />
                         <span>Não</span>
                     </label>
                 </div><br>
                 <div>
                     <span>Tela de Eventos</span><br>
                     <label>
-                        <input name="evento" id="eventoSim" type="radio" value="1" />
+                        <input name="evento" id="eventoSim" type="radio" value="3" />
                         <span>Sim</span>
                     </label>
                     <label>
-                        <input name="evento" id="eventoNao" type="radio" value="0" />
+                        <input name="evento" id="eventoNao" class="nao" type="radio" value="3" />
                         <span>Não</span>
                     </label>
                 </div><br>
                 <div>
                     <span>Tela de Tipo Evento</span><br>
                     <label>
-                        <input name="tipoEvento" id="tipoEventoSim" type="radio" value="1" />
+                        <input name="tipoEvento" id="tipoEventoSim" type="radio" value="4" />
                         <span>Sim</span>
                     </label>
                     <label>
-                        <input name="tipoEvento" id="tipoEventoNao" type="radio" value="0" />
+                        <input name="tipoEvento" id="tipoEventoNao" class="nao" type="radio" value="4" />
                         <span>Não</span>
                     </label>
                 </div><br>
                 <div>
                     <span>Tela de Permissões</span><br>
                     <label>
-                        <input name="permissoes" id="permissoesSim" type="radio" value="1" />
+                        <input name="permissoes" id="permissoesSim" type="radio" value="5" />
                         <span>Sim</span>
                     </label>
                     <label>
-                        <input name="permissoes" id="permissoesNao" type="radio" value="0" />
+                        <input name="permissoes" id="permissoesNao" class="nao" type="radio" value="5" />
                         <span>Não</span>
                     </label>
                 </div>
@@ -83,7 +83,6 @@
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="salvar();">Salvar</a>
         </div>
     </div>
 </div>

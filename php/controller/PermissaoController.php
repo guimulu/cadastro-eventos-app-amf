@@ -8,7 +8,7 @@
 	* @package php/controller 
     */
     include_once("../model/PermissaoModel.php");
-
+    
     $operacao = $_REQUEST['operacao'];
 
     $permissaoModel = new PermissaoModel();
@@ -21,10 +21,10 @@
             buscarPermissoesDoUsuario($permissaoModel);
             break;
         case 'adicionarPermissao':
-            adicionarPermissao();
+            adicionarPermissao($permissaoModel);
             break;
         case 'removerPermissao':
-            removerPermissao();
+            removerPermissao($permissaoModel);
             break;
         default:
             echo "Nenhuma operação encontrada!";
@@ -39,7 +39,6 @@
     */ 
     function adicionarPermissao($permissaoModel) {
         $retorno['status'] = false;
-        
         $resultado = $permissaoModel->adicionarPermissao();
 
         if ($resultado) {

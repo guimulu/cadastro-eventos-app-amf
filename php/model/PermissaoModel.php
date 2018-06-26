@@ -21,9 +21,10 @@
 
 			$usuario = $_REQUEST['usuario'];
 			$permissao = $_REQUEST['permissao'];
+			$sessao = $_REQUEST['sessao'];
 
-			$sql = "INSERT INTO USUARIO_PERMISSAO(ID_USUARIO, ID_PERMISSAO) VALUES($usuario, $permissao)";
-			 
+			$sql = "INSERT INTO USUARIO_PERMISSAO(ID_USUARIO, ID_PERMISSAO, ID_SESSAO) VALUES($usuario, $permissao, $sessao)";
+
 			if($conexao->query($sql) === TRUE) {
 				return true;
 		  	}else{
@@ -46,7 +47,6 @@
 			$permissao = $_REQUEST['permissao'];
 
 			$sql = "DELETE FROM USUARIO_PERMISSAO WHERE ID_USUARIO = $usuario AND ID_PERMISSAO = $permissao";
-			 
 			if($conexao->query($sql) === TRUE) {
 				return true;
 		  	}else{

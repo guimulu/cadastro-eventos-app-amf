@@ -12,11 +12,27 @@ $(document).ready(function(e) {
         var data = table.row( this ).data();
         resetRadioButtons();
         $('#titulo-modal').text("Usuário " + data[1]);
+        $('#usuario').val(data[0]);
         carregarPermissoesUsuario(data[0]);
         $('#modal-permissao').modal('open');
-        console.log(data);
     } );
-    
+
+    $("input[name='usuario'], " +
+        "input[name='curso'], " +
+        "input[name='evento'], " + 
+        "input[name='tipoEvento'], " + 
+        "input[name='permissao']"
+    ).change(function() {
+        usuario = $('#usuario').val();
+        permissao = $(this).val();
+        if ($(this).prop("class") == "nao") {
+            excluirPermissao(usuario, permissao);
+        } else {
+            adicionarPermissao(usuario, permissao);
+        }
+
+    });
+
 });
 
 function buscarUsuarios(){
@@ -61,7 +77,6 @@ function carregarPermissoesUsuario(usuario) {
         if (!resultado.erro) {
             var myArray = [];
             var data = resultado.dados;
-            console.log(resultado.dados);
             $.each(data, function(index, data) {
                 myArray.push(data.ID_PERMISSAO)
             });
@@ -107,4 +122,41 @@ function resetRadioButtons() {
         $("#tipoEventoNao").prop("checked", false);
         $("#permissoesSim").prop("checked", false);
         $("#permissoesNao").prop("checked", false);
+}
+
+function adicionarPermissao(usuario, permissao) {
+    var dados = new Object();
+    dados.usuario = usuario;
+    dados.permissao = permissao;
+    dados.sessao = $.session.get('session_login');
+    dados.operacao = 'adicionarPermissao'; 
+    $.ajax({
+        url: 'php/controller/PermissaoController.php',
+        data: dados,
+        dataType: 'json',
+        async: false
+    }).done(function(resultado) {
+        if (!resultado.erro) {
+        } else {
+            //mensagemErro("Falha ao buscar permissões do usuário!");
+        }
+    });
+}
+
+function excluirPermissao(usuario, permissao) {
+    var dados = new Object();
+    dados.usuario = usuario;
+    dados.permissao = permissao;
+    dados.operacao = 'removerPermissao';
+    $.ajax({
+        url: 'php/controller/PermissaoController.php',
+        data: dados,
+        //dataType: 'json',
+        async: false
+    }).done(function(resultado) {
+        if (!resultado.erro) {
+        } else {
+            //mensagemErro("Falha ao buscar permissões do usuário!");
+        }
+    });
 }
