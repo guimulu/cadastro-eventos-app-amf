@@ -14,7 +14,6 @@ $(document).ready(function(e) {
         $('#titulo-modal').text("Usuário " + data[1]);
         carregarPermissoesUsuario(data[0]);
         $('#modal-permissao').modal('open');
-        console.log(data);
     } );
     
 });
@@ -61,7 +60,6 @@ function carregarPermissoesUsuario(usuario) {
         if (!resultado.erro) {
             var myArray = [];
             var data = resultado.dados;
-            console.log(resultado.dados);
             $.each(data, function(index, data) {
                 myArray.push(data.ID_PERMISSAO)
             });

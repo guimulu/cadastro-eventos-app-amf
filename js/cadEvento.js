@@ -81,12 +81,10 @@ function buscarEventos(){
         dataType: 'json',
         async: false
     }).done(function(resultado) {
-        console.log(resultado);
         if (!resultado.erro) {
             var data = resultado.dados;
             table.clear().draw();
             $.each(data, function(index, data) {     
-                //!!!--Here is the main catch------>fnAddData
                 $('#dt-eventos').dataTable().fnAddData( [
                     data.ID_EVENTO,
                     data.NOME,
@@ -96,9 +94,9 @@ function buscarEventos(){
                     data.DATA_HORA_TERMINO,
                     data.LEMBRETE,
                     data.EXCLUIDO == 0 ? '<i class="material-icons">check_box</i>' : '<i class="material-icons">check_box_outline_blank</i>',
-                    data.ID_EVENTO_TIPO,
-                    data.ID_CURSO,
-                    data.ID_RECORRENCIA
+                    data.NOMEEVENTOTIPO,
+                    data.NOMECURSO,
+                    data.NOMERECORRENCIA
                 ] );      
             });
         } else {
