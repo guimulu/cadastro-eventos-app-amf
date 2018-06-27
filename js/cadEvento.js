@@ -43,8 +43,8 @@ function cadastrarEvento(){
     dados.nome =$('#nome').val();
     dados.descricao =$('#descricao').val();
     dados.localizacao = $('#localizacao').val();
-    dados.dataInicio = moment($('#dataInicio').val()).format('YYYY-MM-DD hh:mm:ss');
-    dados.dataFim = moment($('#dataFim').val()).format('YYYY-MM-DD hh:mm:ss');
+    dados.dataInicio = moment($('#dataInicio').val(), "DD/MM/YYYY hh:mm:ss" ).format('YYYY-MM-DD hh:mm:ss');
+    dados.dataFim = moment($('#dataFim').val(), "DD/MM/YYYY hh:mm:ss" ).format('YYYY-MM-DD hh:mm:ss');
     dados.lembrete =$('#lembrete').val();
     dados.ativo = isChecked($('#ativo')) == 0 ? 1 : 0;
     dados.eventoTipo =$('#eventoTipo').val();
@@ -52,6 +52,7 @@ function cadastrarEvento(){
     dados.recorrencia =$('#recorrencia').val();
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'cadastrarEvento';
+    console.log(dados);
     $.ajax({
         url: 'php/controller/EventoController.php',
         data: dados,
@@ -62,7 +63,7 @@ function cadastrarEvento(){
             limparCamposEvento();
             buscarEventos();
         } else {
-            alert('Falha ao inserir registro!');
+            mensagemErro(resultado.erro);
         } 
     });
 }
@@ -129,8 +130,8 @@ function editarEvento() {
     dados.nome = $('#nome').val();
     dados.descricao = $('#descricao').val();
     dados.localizacao = $('#localizacao').val();
-    dados.dataInicio = moment($('#dataInicio').val()).format('YYYY-MM-DD hh:mm:ss');
-    dados.dataFim = moment($('#dataFim').val()).format('YYYY-MM-DD hh:mm:ss');
+    dados.dataInicio = moment($('#dataInicio').val(), "DD/MM/YYYY hh:mm:ss" ).format('YYYY-MM-DD hh:mm:ss');
+    dados.dataFim = moment($('#dataFim').val(), "DD/MM/YYYY hh:mm:ss" ).format('YYYY-MM-DD hh:mm:ss');
     dados.lembrete = $('#lembrete').val();
     dados.ativo = isChecked($('#ativo')) == 0 ? 1 : 0;
     dados.eventoTipo = $('#eventoTipo').val();
@@ -138,6 +139,7 @@ function editarEvento() {
     dados.recorrencia = $('#recorrencia').val();
     dados.sessao = $.session.get('session_login');
     dados.operacao = 'alterarEvento';
+    console.log(dados);
     $.ajax({
         url: 'php/controller/EventoController.php',
         data: dados,

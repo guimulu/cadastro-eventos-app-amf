@@ -21,7 +21,7 @@ $(document).ready(function(e) {
         "input[name='curso'], " +
         "input[name='evento'], " + 
         "input[name='tipoEvento'], " + 
-        "input[name='permissao']"
+        "input[name='permissoes']"
     ).change(function() {
         usuario = $('#usuario').val();
         permissao = $(this).val();
